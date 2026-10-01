@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PakFreelance — Hire Pakistan's Top Freelancers</title>
+<meta name="description" content="PakFreelance connects Pakistani freelancers with clients locally and internationally. Web development, design, writing, marketing and more." />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#" data-view="home">
+      <span class="brand-mark">PF</span>
+      <span class="brand-name">PakFreelance</span>
+    </a>
+    <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav" class="main-nav" aria-label="Main navigation">
+      <a href="#" class="nav-link" data-view="home" data-i18n="nav_home">Home</a>
+      <a href="#" class="nav-link" data-view="freelancers" data-i18n="nav_freelancers">Find Freelancers</a>
+      <a href="#" class="nav-link" data-view="jobs" data-i18n="nav_jobs">Find Jobs</a>
+      <a href="#" class="nav-link" data-view="messages" data-i18n="nav_messages">Messages <span id="navMsgBadge" class="nav-badge" hidden></span></a>
+      <div class="nav-dropdown">
+        <button id="dashToggle" class="nav-link dash-btn" aria-haspopup="true" aria-expanded="false" data-i18n="nav_dash">Dashboards ▾</button>
+        <div id="dashMenu" class="dropdown-menu" hidden>
+          <a href="#" class="dropdown-item" data-view="dash-f" data-i18n="nav_dash_f">Freelancer Dashboard</a>
+          <a href="#" class="dropdown-item" data-view="dash-c" data-i18n="nav_dash_c">Client Dashboard</a>
+        </div>
+      </div>
+      <a href="#" class="nav-link btn-primary-sm" data-view="post-job" data-i18n="nav_post">Post a Job</a>
+      <button id="langToggle" class="lang-btn" aria-label="Switch language">اردو</button>
+    </nav>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ============ HOME ============ -->
+  <section id="view-home" class="view active">
+    <div class="hero">
+      <div class="hero-inner">
+        <p class="hero-kicker" data-i18n="hero_kicker">Pakistan's trusted freelance marketplace</p>
+        <h1 data-i18n="hero_h1">Hire skilled freelancers. Find meaningful work.</h1>
+        <p class="hero-sub" data-i18n="hero_sub">Thousands of vetted Pakistani professionals — developers, designers, writers and marketers — ready for local and international clients.</p>
+        <form id="heroSearchForm" class="hero-search" autocomplete="off">
+          <input id="heroSearch" type="search" data-i18n-ph="hero_search_ph" placeholder="Try 'web developer', 'logo design', 'video editing'…" aria-label="Search freelancers by skill" />
+          <select id="heroCity" aria-label="Filter by city">
+            <option value="">All Pakistan</option>
+          </select>
+          <button type="submit" class="btn btn-accent" data-i18n="hero_search_btn">Search</button>
+        </form>
+        <div class="hero-stats">
+          <div><strong id="statFreelancers">12</strong><span data-i18n="stat_f">Freelancers</span></div>
+          <div><strong id="statJobs">8</strong><span data-i18n="stat_j">Open jobs</span></div>
+          <div><strong id="statCities">10</strong><span data-i18n="stat_c">Cities</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="home-section">
+        <div class="section-head">
+          <h2 data-i18n="sec_services">Popular services</h2>
+          <p data-i18n="sec_services_sub">What clients are hiring for right now</p>
+        </div>
+        <div id="servicesGrid" class="cards-grid"></div>
+      </div>
+
+      <div class="home-section">
+        <div class="section-head">
+          <h2 data-i18n="sec_skills">Top skills</h2>
+          <p data-i18n="sec_skills_sub">Jump straight into a skill</p>
+        </div>
+        <div id="skillsChips" class="chips"></div>
+      </div>
+
+      <div class="home-section">
+        <div class="section-head">
+          <h2 data-i18n="sec_featured">Featured freelancers</h2>
+          <p data-i18n="sec_featured_sub">Hand-picked, highly rated professionals</p>
+          <button class="link-btn" data-view="freelancers" data-i18n="view_all">View all →</button>
+        </div>
+        <div id="featuredRow" class="cards-grid"></div>
+      </div>
+
+      <div class="home-section">
+        <div class="section-head">
+          <h2 data-i18n="sec_jobs">Latest jobs</h2>
+          <p data-i18n="sec_jobs_sub">Fresh opportunities from clients</p>
+          <button class="link-btn" data-view="jobs" data-i18n="browse_jobs">Browse all jobs →</button>
+        </div>
+        <div id="latestJobs" class="list-stack"></div>
+      </div>
+
+      <div class="home-section">
+        <div class="section-head">
+          <h2 data-i18n="sec_how">How it works</h2>
+        </div>
+        <div class="how-grid">
+          <div class="how-card">
+            <h3 data-i18n="how_client_h">For clients</h3>
+            <ol>
+              <li data-i18n="how_client_1"><strong>Post your job</strong> — describe what you need, set your budget in PKR.</li>
+              <li data-i18n="how_client_2"><strong>Compare proposals</strong> — review profiles, ratings and past work.</li>
+              <li data-i18n="how_client_3"><strong>Pay securely</strong> — funds are held in escrow and released only when you approve the work.</li>
+            </ol>
+            <button class="btn btn-primary" data-view="post-job" data-i18n="how_client_btn">Post a Job — it's free</button>
+          </div>
+          <div class="how-card">
+            <h3 data-i18n="how_free_h">For freelancers</h3>
+            <ol>
+              <li data-i18n="how_free_1"><strong>Build your profile</strong> — showcase skills, portfolio and experience.</li>
+              <li data-i18n="how_free_2"><strong>Send proposals</strong> — apply to jobs that match your expertise.</li>
+              <li data-i18n="how_free_3"><strong>Get paid</strong> — withdraw earnings via JazzCash, Easypaisa or bank transfer.</li>
+            </ol>
+            <button class="btn btn-outline" data-view="freelancers" data-i18n="how_free_btn">Explore Freelancers</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-section trust-band">
+        <div class="trust-item"><span class="trust-icon">✔</span><div><strong data-i18n="trust1_h">Verified professionals</strong><span data-i18n="trust1_s">ID &amp; skill-checked profiles</span></div></div>
+        <div class="trust-item"><span class="trust-icon">🔒</span><div><strong data-i18n="trust2_h">Secure escrow payments</strong><span data-i18n="trust2_s">Only 5% fee — funds released on approval</span></div></div>
+        <div class="trust-item"><span class="trust-icon">💬</span><div><strong data-i18n="trust3_h">Local support</strong><span data-i18n="trust3_s">Help in English &amp; Urdu</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BROWSE FREELANCERS ============ -->
+  <section id="view-freelancers" class="view">
+    <div class="container">
+      <div class="page-head">
+        <h1>Find freelancers</h1>
+        <p>Filter by skill, city, budget and availability</p>
+      </div>
+      <div class="filters">
+        <input id="fSearch" type="search" placeholder="Search name, skill or title…" aria-label="Search freelancers" />
+        <select id="fCat" aria-label="Category"><option value="">All categories</option></select>
+        <select id="fCity" aria-label="City"><option value="">All cities</option></select>
+        <select id="fPrice" aria-label="Price range">
+          <option value="">Any price</option>
+          <option value="0-3000">Up to Rs 3,000</option>
+          <option value="3000-6000">Rs 3,000 – 6,000</option>
+          <option value="6000-15000">Rs 6,000 – 15,000</option>
+        </select>
+        <select id="fRating" aria-label="Minimum rating">
+          <option value="">Any rating</option>
+          <option value="4.8">4.8 &amp; up</option>
+          <option value="4.9">4.9 &amp; up</option>
+        </select>
+        <select id="fAvail" aria-label="Availability">
+          <option value="">Any availability</option>
+          <option value="available">Available now</option>
+          <option value="limited">Limited</option>
+        </select>
+        <select id="fLang" aria-label="Language">
+          <option value="">Any language</option>
+          <option>English</option>
+          <option>Urdu</option>
+        </select>
+        <button id="fClear" class="btn btn-outline btn-sm">Clear</button>
+      </div>
+      <p id="fCount" class="result-count"></p>
+      <div id="freelancersGrid" class="cards-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ FREELANCER PROFILE ============ -->
+  <section id="view-profile" class="view">
+    <div class="container">
+      <button class="link-btn back-btn" data-view="freelancers">← Back to freelancers</button>
+      <div id="profileWrap"></div>
+    </div>
+  </section>
+
+  <!-- ============ BROWSE JOBS ============ -->
+  <section id="view-jobs" class="view">
+    <div class="container">
+      <div class="page-head">
+        <h1>Browse jobs</h1>
+        <p>Opportunities from local &amp; international clients · <span class="match-note">✨ Match scores are computed for your profile</span></p>
+      </div>
+      <div class="filters">
+        <input id="jSearch" type="search" placeholder="Search job titles…" aria-label="Search jobs" />
+        <select id="jCat" aria-label="Category"><option value="">All categories</option></select>
+        <select id="jBudget" aria-label="Budget range">
+          <option value="">Any budget</option>
+          <option value="0-20000">Up to Rs 20,000</option>
+          <option value="20000-60000">Rs 20,000 – 60,000</option>
+          <option value="60000-9999999">Rs 60,000+</option>
+        </select>
+        <select id="jType" aria-label="Job type">
+          <option value="">Remote &amp; onsite</option>
+          <option value="remote">Remote</option>
+          <option value="onsite">Onsite</option>
+        </select>
+        <label class="check-inline"><input id="jSavedOnly" type="checkbox" /> Saved only</label>
+        <button id="jClear" class="btn btn-outline btn-sm">Clear</button>
+      </div>
+      <p id="jCount" class="result-count"></p>
+      <div id="jobsList" class="list-stack"></div>
+    </div>
+  </section>
+
+  <!-- ============ POST A JOB ============ -->
+  <section id="view-post-job" class="view">
+    <div class="container narrow">
+      <div class="page-head">
+        <h1>Post a job</h1>
+        <p>Free to post — proposals usually arrive within hours</p>
+      </div>
+      <form id="pjForm" class="form-card">
+        <label>Job title
+          <input id="pjTitle" type="text" required maxlength="80" placeholder="e.g. Build a responsive company website" />
+        </label>
+        <div class="form-grid">
+          <label>Category
+            <select id="pjCat" required></select>
+          </label>
+          <label>Job type
+            <select id="pjType"><option value="remote">Remote</option><option value="onsite">Onsite</option></select>
+          </label>
+        </div>
+        <label>Description
+          <textarea id="pjDesc" required rows="5" placeholder="Describe the work, deliverables and any requirements…"></textarea>
+        </label>
+        <label>Skills required (comma separated)
+          <input id="pjSkills" type="text" placeholder="e.g. HTML, CSS, JavaScript" />
+        </label>
+        <div class="form-grid">
+          <label>Budget type
+            <select id="pjBudgetType"><option value="fixed">Fixed price</option><option value="hourly">Hourly</option></select>
+          </label>
+          <label>Budget (PKR)
+            <input id="pjBudget" type="number" min="500" required placeholder="e.g. 25000" />
+          </label>
+        </div>
+        <fieldset class="ms-fieldset">
+          <legend>Milestones <span class="muted">(optional — split payment into 2–4 milestones)</span></legend>
+          <div id="pjMilestones"></div>
+          <button type="button" id="pjAddMs" class="btn btn-outline btn-sm">+ Add milestone</button>
+        </fieldset>
+        <label>Deadline
+          <input id="pjDeadline" type="date" required />
+        </label>
+        <div class="fee-box">
+          <div class="fee-row"><span>Your budget</span><strong id="pjFeeBase">–</strong></div>
+          <div class="fee-row"><span>PakFreelance fee (5%)</span><strong id="pjFeeAmt">–</strong></div>
+          <div class="fee-row total"><span>Freelancer receives</span><strong id="pjFeeNet">–</strong></div>
+        </div>
+        <button type="submit" class="btn btn-accent btn-block">Post Job</button>
+        <p class="hint">Your job will appear in Browse Jobs and on your client dashboard.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FREELANCER DASHBOARD ============ -->
+  <section id="view-dash-f" class="view">
+    <div class="container">
+      <div class="page-head row-between">
+        <div>
+          <h1>Freelancer dashboard</h1>
+          <p>Welcome back, <strong id="dfName">Ahmed Raza</strong></p>
+        </div>
+        <label class="avail-toggle">Availability
+          <button id="availToggle" class="toggle on" role="switch" aria-checked="true" aria-label="Toggle availability"><span class="knob"></span></button>
+          <span id="availLabel">Available</span>
+        </label>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-label">Total earnings</span><strong id="dfEarnings">–</strong></div>
+        <div class="stat-card"><span class="stat-label">Active orders</span><strong id="dfOrders">–</strong></div>
+        <div class="stat-card"><span class="stat-label">Proposals sent</span><strong id="dfProposals">–</strong></div>
+        <div class="stat-card"><span class="stat-label">Profile views</span><strong id="dfViews">–</strong></div>
+      </div>
+      <div class="dash-grid">
+        <div class="panel">
+          <h2>Verification</h2>
+          <div id="dfVerifyList"></div>
+          <button id="dfQuizBtn" class="btn btn-primary btn-sm">Take skill test</button>
+        </div>
+        <div class="panel">
+          <h2>Payout methods</h2>
+          <div id="dfPayouts"></div>
+          <button id="dfAddPayout" class="btn btn-outline btn-sm">+ Add payout method</button>
+          <p class="hint">Withdraw via JazzCash, Easypaisa or bank transfer. Only 5% platform fee.</p>
+        </div>
+        <div class="panel">
+          <h2>My proposals</h2>
+          <div id="dfProposalsList" class="list-stack"></div>
+        </div>
+        <div class="panel">
+          <h2>Active orders</h2>
+          <div id="dfOrdersList" class="list-stack"></div>
+        </div>
+        <div class="panel">
+          <h2>Saved jobs</h2>
+          <div id="dfSavedList" class="list-stack"></div>
+        </div>
+        <div class="panel">
+          <h2>Disputes</h2>
+          <div id="dfDisputesList" class="list-stack"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLIENT DASHBOARD ============ -->
+  <section id="view-dash-c" class="view">
+    <div class="container">
+      <div class="page-head">
+        <h1>Client dashboard</h1>
+        <p>Manage your jobs, proposals and orders</p>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-label">Jobs posted</span><strong id="dcJobs">–</strong></div>
+        <div class="stat-card"><span class="stat-label">Proposals received</span><strong id="dcProposals">–</strong></div>
+        <div class="stat-card"><span class="stat-label">Active orders</span><strong id="dcOrders">–</strong></div>
+        <div class="stat-card"><span class="stat-label">Total spent</span><strong id="dcSpent">–</strong></div>
+      </div>
+      <div class="dash-grid">
+        <div class="panel wide">
+          <div class="row-between">
+            <h2>My job postings</h2>
+            <button class="btn btn-primary btn-sm" data-view="post-job">+ Post a job</button>
+          </div>
+          <div id="dcJobsList" class="list-stack"></div>
+        </div>
+        <div class="panel">
+          <h2>Active orders</h2>
+          <div id="dcOrdersList" class="list-stack"></div>
+        </div>
+        <div class="panel">
+          <h2>Payment methods</h2>
+          <div id="dcPayouts"></div>
+          <button id="dcAddPayout" class="btn btn-outline btn-sm">+ Add payment method</button>
+          <p class="hint">Pay securely — funds are held in escrow until you approve the work.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Proposals received</h2>
+        <div id="dcProposalsList" class="list-stack"></div>
+      </div>
+      <div class="panel">
+        <h2>Disputes</h2>
+        <div id="dcDisputesList" class="list-stack"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MESSAGES ============ -->
+  <section id="view-messages" class="view">
+    <div class="container">
+      <div class="page-head">
+        <h1>Messages</h1>
+        <p>Chat with clients and freelancers</p>
+      </div>
+      <div class="msg-layout">
+        <aside class="conv-list" id="convList" aria-label="Conversations"></aside>
+        <div class="chat-window">
+          <div id="chatHeader" class="chat-header"><span class="muted">Select a conversation</span></div>
+          <div id="chatMessages" class="chat-messages"></div>
+          <form id="chatForm" class="chat-input" autocomplete="off">
+            <input id="chatInput" type="text" placeholder="Type a message…" aria-label="Type a message" disabled />
+            <button type="submit" class="btn btn-accent" id="chatSend" disabled>Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ORDER DETAIL ============ -->
+  <section id="view-order" class="view">
+    <div class="container narrow">
+      <button class="link-btn back-btn" data-view="dash-f">← Back to dashboard</button>
+      <div id="orderWrap"></div>
+    </div>
+  </section>
+
+  <!-- ============ SKILL TEST ============ -->
+  <section id="view-quiz" class="view">
+    <div class="container narrow">
+      <button class="link-btn back-btn" data-view="dash-f">← Back to dashboard</button>
+      <div class="panel">
+        <h1>Skill test</h1>
+        <p class="muted">Answer 5 questions in your category. Score 60% or more to earn the <strong>Skill test passed</strong> badge on your profile.</p>
+        <div id="quizSetup">
+          <label style="display:block;margin-bottom:0.9rem;font-weight:600;">Category
+            <select id="quizCat" style="display:block;width:100%;margin-top:0.35rem;padding:0.65rem 0.8rem;border:1px solid var(--line);border-radius:8px;"></select>
+          </label>
+          <button id="quizStart" class="btn btn-accent">Start test</button>
+        </div>
+        <div id="quizPlay" hidden>
+          <p id="quizProgress" class="muted"></p>
+          <h3 id="quizQ"></h3>
+          <div id="quizOpts" class="quiz-opts"></div>
+        </div>
+        <div id="quizResult" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DISPUTE DETAIL ============ -->
+  <section id="view-dispute" class="view">
+    <div class="container narrow">
+      <button class="link-btn back-btn" data-view="dash-f">← Back to dashboard</button>
+      <div id="disputeWrap"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="brand"><span class="brand-mark">PF</span><span class="brand-name">PakFreelance</span></div>
+      <p class="muted" data-i18n="footer_tag">Connecting Pakistan's talent with the world. Demo marketplace — sample data.</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer_market">Marketplace</h4>
+      <a href="#" data-view="freelancers" data-i18n="nav_freelancers">Find freelancers</a>
+      <a href="#" data-view="jobs" data-i18n="nav_jobs">Find jobs</a>
+      <a href="#" data-view="post-job" data-i18n="nav_post">Post a job</a>
+    </div>
+    <div>
+      <h4 data-i18n="footer_account">Account</h4>
+      <a href="#" data-view="dash-f" data-i18n="nav_dash_f">Freelancer Dashboard</a>
+      <a href="#" data-view="dash-c" data-i18n="nav_dash_c">Client Dashboard</a>
+      <a href="#" data-view="messages" data-i18n="nav_messages">Messages</a>
+    </div>
+  </div>
+  <p class="footer-note">© 2026 PakFreelance · All demo data is fictional and for illustration only.</p>
+</footer>
+
+<!-- Proposal modal -->
+<div id="modalBackdrop" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="propJobTitle">
+    <h2 id="propJobTitle">Submit proposal</h2>
+    <p class="muted" id="propJobMeta"></p>
+    <label>Cover letter
+      <textarea id="propCover" rows="5" placeholder="Why are you the right person for this job?"></textarea>
+    </label>
+    <div class="form-grid">
+      <label>Your bid (PKR)
+        <input id="propBid" type="number" min="500" placeholder="e.g. 20000" />
+      </label>
+      <label>Delivery time (days)
+        <input id="propDays" type="number" min="1" placeholder="e.g. 7" />
+      </label>
+    </div>
+    <div class="modal-actions">
+      <button id="propCancel" class="btn btn-outline">Cancel</button>
+      <button id="propSubmit" class="btn btn-accent">Send Proposal</button>
+    </div>
+  </div>
+</div>
+
+<!-- Hire modal -->
+<div id="hireBackdrop" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="hireTitle">
+    <h2 id="hireTitle">Hire freelancer</h2>
+    <p class="muted" id="hireFreelancerName"></p>
+    <label>Service
+      <select id="hireService"></select>
+    </label>
+    <div class="form-grid">
+      <label>Amount (PKR)
+        <input id="hireAmount" type="number" min="500" />
+      </label>
+      <label>Deadline
+        <input id="hireDeadline" type="date" />
+      </label>
+    </div>
+    <label>Notes for the freelancer
+      <textarea id="hireNotes" rows="3" placeholder="Briefly describe what you need…"></textarea>
+    </label>
+    <div class="fee-box">
+      <div class="fee-row"><span>Service amount</span><strong id="hireSubtotal">–</strong></div>
+      <div class="fee-row"><span>PakFreelance fee (5%)</span><strong id="hireFee">–</strong></div>
+      <div class="fee-row total"><span>Total (held in escrow)</span><strong id="hireTotal">–</strong></div>
+    </div>
+    <div class="modal-actions">
+      <button id="hireCancel" class="btn btn-outline">Cancel</button>
+      <button id="hireSubmit" class="btn btn-accent">Place Order</button>
+    </div>
+  </div>
+</div>
+
+<!-- Payout method modal -->
+<div id="payoutBackdrop" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="payoutTitle">
+    <h2 id="payoutTitle">Add payout method</h2>
+    <p class="muted">Demo UI — details are masked and stored only in your browser.</p>
+    <label>Method
+      <select id="poType">
+        <option>JazzCash</option>
+        <option>Easypaisa</option>
+        <option>Bank transfer</option>
+      </select>
+    </label>
+    <label>Account title
+      <input id="poName" type="text" maxlength="40" placeholder="e.g. Ahmed Raza" />
+    </label>
+    <label>Mobile / account number
+      <input id="poNumber" type="text" maxlength="20" placeholder="03XXXXXXXXX" />
+    </label>
+    <div class="modal-actions">
+      <button id="poCancel" class="btn btn-outline">Cancel</button>
+      <button id="poSubmit" class="btn btn-accent">Save Method</button>
+    </div>
+  </div>
+</div>
+
+<!-- Dispute modal -->
+<div id="disputeBackdrop" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="dspTitle">
+    <h2 id="dspTitle">Open dispute</h2>
+    <p class="muted" id="dspOrderTitle"></p>
+    <label>Reason
+      <select id="dspReason">
+        <option>Work not delivered</option>
+        <option>Quality issue</option>
+        <option>Missed deadline</option>
+        <option>Payment issue</option>
+        <option>Other</option>
+      </select>
+    </label>
+    <label>Details
+      <textarea id="dspDetails" rows="4" placeholder="Describe the issue…"></textarea>
+    </label>
+    <div class="modal-actions">
+      <button id="dspCancel" class="btn btn-outline">Cancel</button>
+      <button id="dspSubmit" class="btn btn-accent">Submit Dispute</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>
