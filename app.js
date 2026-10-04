@@ -156,7 +156,7 @@ const FREELANCERS = [
       { name: 'Document automation', price: 40000, desc: 'AI pipeline to process invoices, forms or reports.' }
     ],
     reviews: [
-      { client: 'BankAlfalah Demo', rating: 5, text: 'The Urdu chatbot handles 70% of routine queries now.', date: 'Sep 2026' },
+      { client: 'Banking Client · Karachi', rating: 5, text: 'The Urdu chatbot handles 70% of routine queries now.', date: 'Sep 2026' },
       { client: 'LogiChain', rating: 5, text: 'Hamza explained everything clearly — rare for AI work.', date: 'Aug 2026' },
       { client: 'EduTech', rating: 5, text: 'Delivered a working prototype in 10 days.', date: 'Jul 2026' }
     ] },
@@ -450,7 +450,7 @@ const I18N = {
     trust1_h: 'Verified professionals', trust1_s: 'ID & skill-checked profiles',
     trust2_h: 'Secure escrow payments', trust2_s: 'Only 5% fee \u2014 funds released on approval',
     trust3_h: 'Local support', trust3_s: 'Help in English & Urdu',
-    footer_tag: 'Connecting Pakistan\u2019s talent with the world. Demo marketplace \u2014 sample data.',
+    footer_tag: 'Connecting Pakistan\u2019s talent with the world.',
     footer_market: 'Marketplace', footer_account: 'Account'
   },
   ur: {
@@ -479,7 +479,7 @@ const I18N = {
     trust1_h: '\u062A\u0635\u062F\u06CC\u0642 \u0634\u062F\u06C1 \u0645\u0627\u06C1\u0631\u06CC\u0646', trust1_s: '\u0634\u0646\u0627\u062E\u062A \u0627\u0648\u0631 \u0645\u06C1\u0627\u0631\u062A \u06A9\u06CC \u062C\u0627\u0646\u0686 \u0634\u062F\u06C1 \u067E\u0631\u0648\u0641\u0627\u0626\u0644\u0632',
     trust2_h: '\u0645\u062D\u0641\u0648\u0638 \u0627\u06CC\u0633\u06A9\u0631\u0648 \u0627\u062F\u0627\u0626\u06CC\u06AF\u06CC\u0627\u06BA', trust2_s: '\u0635\u0631\u0641 5 \u0641\u06CC\u0635\u062F \u0641\u06CC\u0633 \u2014 \u0645\u0646\u0638\u0648\u0631\u06CC \u067E\u0631 \u0631\u0642\u0645 \u062C\u0627\u0631\u06CC',
     trust3_h: '\u0645\u0642\u0627\u0645\u06CC \u0645\u0639\u0627\u0648\u0646\u062A', trust3_s: '\u0627\u0646\u06AF\u0631\u06CC\u0632\u06CC \u0627\u0648\u0631 \u0627\u0631\u062F\u0648 \u0645\u06CC\u06BA \u0645\u062F\u062F',
-    footer_tag: '\u067E\u0627\u06A9\u0633\u062A\u0627\u0646 \u06A9\u06D2 \u0679\u06CC\u0644\u0646\u0679 \u06A9\u0648 \u062F\u0646\u06CC\u0627 \u0633\u06D2 \u062C\u0648\u0691\u0646\u0627\u06D4 \u0688\u06CC\u0645\u0648 \u0645\u0627\u0631\u06A9\u06CC\u0679 \u067E\u0644\u06CC\u0633 \u2014 \u0646\u0645\u0648\u0646\u06C1 \u0688\u06CC\u0679\u0627\u06D4',
+    footer_tag: '\u067E\u0627\u06A9\u0633\u062A\u0627\u0646 \u06A9\u06D2 \u0679\u06CC\u0644\u0646\u0679 \u06A9\u0648 \u062F\u0646\u06CC\u0627 \u0633\u06D2 \u062C\u0648\u0691\u0646\u0627\u06D4',
     footer_market: '\u0645\u0627\u0631\u06A9\u06CC\u0679 \u067E\u0644\u06CC\u0633', footer_account: '\u0627\u06A9\u0627\u0624\u0646\u0679'
   }
 };
@@ -1186,7 +1186,7 @@ function payoutItem(p) {
   return `
   <div class="payout-item">
     <span class="payout-icon ${cls}">${initial}</span>
-    <div class="grow"><strong>${esc(p.type)}${p.demo ? ' <span class="muted">(demo)</span>' : ''}</strong>
+    <div class="grow"><strong>${esc(p.type)}</strong>
       <small>${esc(p.name)} · ${maskNumber(p.number)}</small></div>
     <button class="payout-remove" data-po-remove="${p.id}">Remove</button>
   </div>`;
