@@ -51,6 +51,7 @@
       <a href="#" class="nav-link" data-view="home" data-i18n="nav_home">Home</a>
       <a href="#" class="nav-link" data-view="freelancers" data-i18n="nav_freelancers">Find Freelancers</a>
       <a href="#" class="nav-link" data-view="jobs" data-i18n="nav_jobs">Find Jobs</a>
+      <a href="#" class="nav-link" data-view="agency" data-i18n="nav_agency">🚀 Done For You</a>
       <a href="#" class="nav-link" data-view="messages" data-i18n="nav_messages">Messages <span id="navMsgBadge" class="nav-badge" hidden></span></a>
       <div class="nav-dropdown">
         <button id="dashToggle" class="nav-link dash-btn" aria-haspopup="true" aria-expanded="false" data-i18n="nav_dash">Dashboards ▾</button>
@@ -86,6 +87,16 @@
           <div><strong id="statJobs">8</strong><span data-i18n="stat_j">Open jobs</span></div>
           <div><strong id="statCities">10</strong><span data-i18n="stat_c">Cities</span></div>
         </div>
+      </div>
+    </div>
+
+    <div class="agency-banner">
+      <div class="container agency-banner-inner">
+        <div>
+          <h2>🚀 Need it done for you?</h2>
+          <p>Skip the search — our in-house PakFreelance team designs, builds and writes it for you. Fixed prices, guaranteed delivery, direct WhatsApp support.</p>
+        </div>
+        <button class="btn btn-accent btn-lg" data-view="agency">See Done-For-You Services</button>
       </div>
     </div>
 
@@ -440,6 +451,13 @@
     </div>
   </section>
 
+  <!-- ============ DONE FOR YOU (AGENCY) ============ -->
+  <section id="view-agency" class="view">
+    <div class="container">
+      <div id="agencyWrap"></div>
+    </div>
+  </section>
+
 </main>
 
 <section class="seo-section">
@@ -461,6 +479,8 @@
     <p>Escrow payments with milestone releases, verified freelancer badges, skill-test quizzes, transparent 5% fee, and payouts via JazzCash, Easypaisa and bank transfer in PKR. Post your job for free and get AI-matched proposals from Pakistan's top freelancers.</p>
     <h3>Freelance jobs &amp; online earning in Pakistan</h3>
     <p>Freelancers across Pakistan earn in PKR and USD working with local and international clients. Browse freelance jobs, submit proposals, track orders with milestones, and withdraw earnings to JazzCash, Easypaisa or your bank account.</p>
+    <h3>Done-for-you services by our in-house team</h3>
+    <p>In a hurry? The PakFreelance in-house team delivers directly: business websites, logo &amp; brand kits, SEO articles, video editing, social media management and SEO starter packs — with fixed PKR prices, guaranteed delivery times and direct WhatsApp support. Request a service and our team takes it from there.</p>
   </div>
 </section>
 
@@ -585,6 +605,48 @@
     <div class="modal-actions">
       <button id="dspCancel" class="btn btn-outline">Cancel</button>
       <button id="dspSubmit" class="btn btn-accent">Submit Dispute</button>
+    </div>
+  </div>
+</div>
+
+<!-- Agency service request modal -->
+<div id="agencyBackdrop" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="agTitle">
+    <h2 id="agTitle">Request this service</h2>
+    <div id="agFormFields">
+    <p class="muted" id="agServiceName"></p>
+    <label>Package
+      <select id="agPackage"></select>
+    </label>
+    <div class="fee-box">
+      <div class="fee-row"><span>Package price</span><strong id="agPrice">–</strong></div>
+      <div class="fee-row"><span>Delivery time</span><strong id="agDays">–</strong></div>
+    </div>
+    <label>Describe what you need
+      <textarea id="agNotes" rows="3" placeholder="Tell our team exactly what you want — pages, style, content, examples…"></textarea>
+    </label>
+    <div class="form-grid">
+      <label>Your name
+        <input id="agName" type="text" placeholder="Full name" />
+      </label>
+      <label>WhatsApp number
+        <input id="agPhone" type="tel" placeholder="03xx xxxxxxx" />
+      </label>
+    </div>
+    <p class="muted" style="font-size:0.85rem;">Our in-house team replies on WhatsApp within a few hours. Pay only after we confirm your requirements — via JazzCash, Easypaisa or bank transfer.</p>
+    <div class="modal-actions">
+      <button id="agCancel" class="btn btn-outline">Cancel</button>
+      <button id="agSubmit" class="btn btn-accent">Send Request</button>
+    </div>
+    </div>
+    <div id="agSuccess" hidden>
+      <p style="font-size:2.4rem;text-align:center;">🎉</p>
+      <h3 style="text-align:center;">Request received!</h3>
+      <p class="muted" style="text-align:center;">Our team will confirm your requirements on WhatsApp. Tap below to start the chat now — it opens with your request details pre-filled.</p>
+      <div class="modal-actions" style="justify-content:center;">
+        <a id="agWaLink" class="btn btn-accent" href="#" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+        <button id="agTrack" class="btn btn-outline">Track my request</button>
+      </div>
     </div>
   </div>
 </div>
