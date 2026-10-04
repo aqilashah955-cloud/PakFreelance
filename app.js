@@ -549,8 +549,23 @@ const maskNumber = (num) => {
 const VIEWS = ['home', 'freelancers', 'profile', 'jobs', 'post-job', 'dash-f', 'dash-c', 'messages', 'order', 'quiz', 'dispute'];
 let currentProfileId = null, currentOrderId = null, currentDisputeId = null;
 
+const VIEW_TITLES = {
+  home: "PakFreelance — Hire Freelancers in Pakistan | Web, Design, Writing, Marketing",
+  freelancers: "Find Freelancers in Pakistan — Web, Design, Writing & More | PakFreelance",
+  profile: "Freelancer Profile | PakFreelance",
+  jobs: "Freelance Jobs in Pakistan — Online Earning | PakFreelance",
+  "post-job": "Post a Job Free — Hire Pakistani Freelancers | PakFreelance",
+  "dash-f": "Freelancer Dashboard | PakFreelance",
+  "dash-c": "Client Dashboard | PakFreelance",
+  messages: "Messages | PakFreelance",
+  order: "Order Tracking | PakFreelance",
+  quiz: "Skill Test Quiz | PakFreelance",
+  dispute: "Dispute Center | PakFreelance"
+};
+
 function showView(name, param) {
   if (!VIEWS.includes(name)) name = 'home';
+  document.title = VIEW_TITLES[name] || VIEW_TITLES.home;
   $$('.view').forEach((v) => v.classList.remove('active'));
   const el = $('view-' + name);
   if (el) el.classList.add('active');
