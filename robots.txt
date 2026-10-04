@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aqilashah955-cloud.github.io/PakFreelance/sitemap.xml

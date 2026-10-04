@@ -613,3 +613,11 @@ html[lang="ur"] .msg.them { align-self: flex-end; }
 .d-timeline li.current .dot { background: var(--warn); }
 .d-timeline strong { color: var(--navy); display: block; }
 .d-timeline small { color: var(--muted); }
+
+/* ============ SEO content section ============ */
+.seo-section { background: #f7f5ef; border-top: 1px solid #e7e0cf; padding: 36px 0; margin-top: 48px; }
+.seo-section h2 { font-size: 1.5rem; margin-bottom: 10px; }
+.seo-section h3 { font-size: 1.1rem; margin: 20px 0 8px; }
+.seo-section p { color: #4a463c; line-height: 1.65; max-width: 72ch; }
+.seo-links { columns: 2; gap: 24px; max-width: 72ch; padding-left: 20px; color: #4a463c; line-height: 1.8; }
+@media (max-width: 560px) { .seo-links { columns: 1; } }
