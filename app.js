@@ -313,6 +313,53 @@ const SEED_CONVS = [
     ], unread: 1 }
 ];
 
+/* ---------------- Done-For-You agency services (fulfilled by the PakFreelance in-house team) ---------------- */
+const TEAM_WHATSAPP = '923456121725';
+const AGENCY_SERVICES = [
+  { id: 'web', emoji: '🌐', title: 'Business Website',
+    desc: 'A fast, mobile-friendly website for your business — designed, built and launched by our team.',
+    packages: [
+      { name: 'Starter', price: 25000, days: 7, features: ['Up to 5 pages', 'Mobile responsive', 'Contact form + WhatsApp button', 'Basic SEO setup'] },
+      { name: 'Business', price: 45000, days: 14, features: ['Up to 12 pages', 'Blog / news section', 'Google Maps + Analytics', 'Speed optimization'] },
+      { name: 'Premium', price: 80000, days: 21, features: ['Up to 25 pages', 'Online store / booking', 'Custom design system', '1 month free support'] }
+    ] },
+  { id: 'logo', emoji: '🎨', title: 'Logo & Brand Kit',
+    desc: 'A professional logo and complete brand identity your customers will remember.',
+    packages: [
+      { name: 'Starter', price: 8000, days: 4, features: ['2 logo concepts', '2 revision rounds', 'PNG + JPG files'] },
+      { name: 'Business', price: 15000, days: 7, features: ['4 logo concepts', 'Unlimited revisions', 'Vector + print files', 'Color palette'] },
+      { name: 'Premium', price: 28000, days: 10, features: ['6 logo concepts', 'Full brand guide', 'Business card + letterhead', 'Social media kit'] }
+    ] },
+  { id: 'content', emoji: '✍️', title: 'Content Writing',
+    desc: 'SEO-friendly articles and website copy written in clear, natural English (or Urdu).',
+    packages: [
+      { name: 'Starter', price: 3000, days: 3, features: ['1 article up to 800 words', 'SEO keywords included', '1 revision round'] },
+      { name: 'Business', price: 12000, days: 7, features: ['5 articles up to 1000 words', 'Meta titles + descriptions', 'Plagiarism-free guarantee'] },
+      { name: 'Premium', price: 25000, days: 14, features: ['12 articles up to 1200 words', 'Content calendar', 'Images + formatting', 'Priority support'] }
+    ] },
+  { id: 'video', emoji: '🎬', title: 'Video Editing',
+    desc: 'Polished videos for YouTube, TikTok, Instagram and ads — edited to keep viewers watching.',
+    packages: [
+      { name: 'Starter', price: 5000, days: 3, features: ['1 video up to 2 min', 'Captions / subtitles', 'Music + transitions'] },
+      { name: 'Business', price: 18000, days: 7, features: ['4 videos up to 5 min', 'Thumbnail designs', 'Color grading', '2 revision rounds'] },
+      { name: 'Premium', price: 40000, days: 14, features: ['10 videos up to 10 min', 'Motion graphics intro', 'Full YouTube optimization', 'Dedicated editor'] }
+    ] },
+  { id: 'social', emoji: '📣', title: 'Social Media Management',
+    desc: 'We run your Facebook, Instagram and TikTok — posts, reels and replies, every week.',
+    packages: [
+      { name: 'Starter', price: 15000, days: 30, features: ['12 posts / month', 'Caption writing', 'Basic design'] },
+      { name: 'Business', price: 30000, days: 30, features: ['20 posts + 4 reels / month', 'Comment replies', 'Monthly growth report'] },
+      { name: 'Premium', price: 55000, days: 30, features: ['30 posts + 8 reels / month', 'Ad campaign management', 'Dedicated manager', 'Weekly reports'] }
+    ] },
+  { id: 'seo', emoji: '🔍', title: 'SEO Starter Pack',
+    desc: 'Get found on Google — technical fixes, keywords and content that rank.',
+    packages: [
+      { name: 'Starter', price: 12000, days: 7, features: ['Full SEO audit', '20 keywords researched', 'Fix list for your site'] },
+      { name: 'Business', price: 28000, days: 21, features: ['Everything in Starter', '10 pages optimized', 'Google Business profile', 'Backlink starter (10 links)'] },
+      { name: 'Premium', price: 50000, days: 30, features: ['Everything in Business', '20 pages optimized', 'Monthly content plan', 'Rank tracking dashboard'] }
+    ] }
+];
+
 /* ---------------- Seed orders (demo) ---------------- */
 const SEED_ORDERS = [
   { id: 'o1', jobTitle: 'Company website for Al-Noor Traders', freelancerId: 'f1', freelancerName: 'Ahmed Raza',
@@ -425,7 +472,7 @@ const QUIZ = {
 /* ---------------- i18n: English / Urdu (header + homepage chrome) ---------------- */
 const I18N = {
   en: {
-    nav_home: 'Home', nav_freelancers: 'Find Freelancers', nav_jobs: 'Find Jobs', nav_messages: 'Messages',
+    nav_home: 'Home', nav_freelancers: 'Find Freelancers', nav_jobs: 'Find Jobs', nav_agency: '🚀 Done For You', nav_messages: 'Messages',
     nav_dash: 'Dashboards \u25BE', nav_dash_f: 'Freelancer Dashboard', nav_dash_c: 'Client Dashboard', nav_post: 'Post a Job',
     hero_kicker: 'Pakistan\u2019s trusted freelance marketplace',
     hero_h1: 'Hire skilled freelancers. Find meaningful work.',
@@ -454,7 +501,7 @@ const I18N = {
     footer_market: 'Marketplace', footer_account: 'Account'
   },
   ur: {
-    nav_home: '\u06C1\u0648\u0645', nav_freelancers: '\u0641\u0631\u06CC \u0644\u0627\u0646\u0633\u0631\u0632 \u062A\u0644\u0627\u0634 \u06A9\u0631\u06CC\u06BA', nav_jobs: '\u0645\u0644\u0627\u0632\u0645\u062A\u06CC\u06BA \u062A\u0644\u0627\u0634 \u06A9\u0631\u06CC\u06BA', nav_messages: '\u067E\u06CC\u063A\u0627\u0645\u0627\u062A',
+    nav_home: '\u06C1\u0648\u0645', nav_freelancers: '\u0641\u0631\u06CC \u0644\u0627\u0646\u0633\u0631\u0632 \u062A\u0644\u0627\u0634 \u06A9\u0631\u06CC\u06BA', nav_jobs: '\u0645\u0644\u0627\u0632\u0645\u062A\u06CC\u06BA \u062A\u0644\u0627\u0634 \u06A9\u0631\u06CC\u06BA', nav_agency: '🚀 \u06C1\u0645 \u0633\u06D2 \u06A9\u0631\u0648\u0627\u0626\u06CC\u06BA', nav_messages: '\u067E\u06CC\u063A\u0627\u0645\u0627\u062A',
     nav_dash: '\u0688\u06CC\u0634 \u0628\u0648\u0631\u0688\u0632 \u25BE', nav_dash_f: '\u0641\u0631\u06CC \u0644\u0627\u0646\u0633\u0631 \u0688\u06CC\u0634 \u0628\u0648\u0631\u0688', nav_dash_c: '\u06A9\u0644\u0627\u0626\u0646\u0679 \u0688\u06CC\u0634 \u0628\u0648\u0631\u0688', nav_post: '\u0645\u0644\u0627\u0632\u0645\u062A \u067E\u0648\u0633\u0679 \u06A9\u0631\u06CC\u06BA',
     hero_kicker: '\u067E\u0627\u06A9\u0633\u062A\u0627\u0646 \u06A9\u0627 \u0642\u0627\u0628\u0644\u0650 \u0627\u0639\u062A\u0645\u0627\u062F \u0641\u0631\u06CC \u0644\u0627\u0646\u0633 \u0645\u0627\u0631\u06A9\u06CC\u0679 \u067E\u0644\u06CC\u0633',
     hero_h1: '\u0645\u0627\u06C1\u0631 \u0641\u0631\u06CC \u0644\u0627\u0646\u0633\u0631\u0632 \u06A9\u06CC \u062E\u062F\u0645\u0627\u062A \u062D\u0627\u0635\u0644 \u06A9\u0631\u06CC\u06BA\u06D4 \u0628\u0627\u0645\u0639\u0646\u06CC \u06A9\u0627\u0645 \u062A\u0644\u0627\u0634 \u06A9\u0631\u06CC\u06BA\u06D4',
@@ -546,7 +593,7 @@ const maskNumber = (num) => {
 };
 
 /* ---------------- Router ---------------- */
-const VIEWS = ['home', 'freelancers', 'profile', 'jobs', 'post-job', 'dash-f', 'dash-c', 'messages', 'order', 'quiz', 'dispute'];
+const VIEWS = ['home', 'freelancers', 'profile', 'jobs', 'post-job', 'dash-f', 'dash-c', 'messages', 'order', 'quiz', 'dispute', 'agency'];
 let currentProfileId = null, currentOrderId = null, currentDisputeId = null;
 
 const VIEW_TITLES = {
@@ -560,7 +607,8 @@ const VIEW_TITLES = {
   messages: "Messages | PakFreelance",
   order: "Order Tracking | PakFreelance",
   quiz: "Skill Test Quiz | PakFreelance",
-  dispute: "Dispute Center | PakFreelance"
+  dispute: "Dispute Center | PakFreelance",
+  agency: "Done For You — In-House Services by PakFreelance Team"
 };
 
 function showView(name, param) {
@@ -587,6 +635,7 @@ function showView(name, param) {
   else if (name === 'order') { currentOrderId = param || currentOrderId; renderOrder(currentOrderId); }
   else if (name === 'quiz') initQuiz();
   else if (name === 'dispute') { currentDisputeId = param || currentDisputeId; renderDispute(currentDisputeId); }
+  else if (name === 'agency') renderAgency();
 }
 
 function bindNav() {
@@ -1130,7 +1179,7 @@ function disputeMini(d) {
 function renderDashC() {
   const myJobs = allJobs().filter((j) => j.mine);
   const myOrders = allOrders().filter((o) => o.mineAs === 'client');
-  const active = myOrders.filter((o) => ['placed', 'in_progress', 'delivered'].includes(o.status));
+  const active = myOrders.filter((o) => ['requested', 'placed', 'in_progress', 'delivered'].includes(o.status));
   const received = SEED_PROPOSALS.filter((p) => myJobs.some((j) => j.id === p.jobId));
   $('dcJobs').textContent = myJobs.length;
   $('dcProposals').textContent = received.length;
@@ -1295,7 +1344,7 @@ function renderOrder(id) {
   const f = freelancerById(o.freelancerId);
   const fee = feeOf(o.amount), total = o.amount + fee;
   const steps = ['Order placed', 'Funds held in escrow', 'In progress', 'Delivered', 'Completed'];
-  const stepIdx = { placed: 1, in_progress: 2, delivered: 3, completed: 4 }[o.status];
+  const stepIdx = { requested: 0, placed: 1, in_progress: 2, delivered: 3, completed: 4 }[o.status];
   const timeline = steps.map((s, i) => {
     const cls = i < stepIdx ? 'done' : i === stepIdx ? 'current' : '';
     return `<li class="${cls}"><span class="dot"></span><strong>${s}</strong><small>${i === 1 ? 'Released only when you approve the work' : i === 0 ? o.created : ''}</small></li>`;
@@ -1388,6 +1437,115 @@ function renderOrder(id) {
     const m = t.milestones.find((x) => x.id === btn.getAttribute('data-ms-revision'));
     if (m) { m.status = 'pending'; toast('Revision requested on milestone'); }
   })));
+}
+
+/* ---------------- DONE FOR YOU (AGENCY) ---------------- */
+const agencySel = {}; // serviceId -> package index (default 1 = middle)
+let agencyReqSvc = null, agencyReqOrderId = null;
+
+function agencyPkg(s, i) { return s.packages[agencySel[s.id] != null ? agencySel[s.id] : 1]; }
+
+function renderAgency() {
+  const w = $('agencyWrap');
+  w.innerHTML = `
+    <div class="agency-hero">
+      <p class="hero-kicker">PakFreelance in-house team</p>
+      <h1>🚀 Done For You</h1>
+      <p class="agency-sub">Don't want to search, compare and manage freelancers? Hand the work directly to our own team — fixed PKR prices, guaranteed delivery dates, and direct WhatsApp support from start to finish.</p>
+      <div class="agency-steps">
+        <div><span class="step-n">1</span><div><strong>Pick a service</strong><br /><small>Choose a package that fits your budget</small></div></div>
+        <div><span class="step-n">2</span><div><strong>Send your requirements</strong><br /><small>We confirm everything on WhatsApp</small></div></div>
+        <div><span class="step-n">3</span><div><strong>Get it delivered</strong><br /><small>Pay via JazzCash, Easypaisa or bank</small></div></div>
+      </div>
+    </div>
+    <div class="agency-grid">
+      ${AGENCY_SERVICES.map((s) => `
+      <article class="agency-card" data-ag-card="${s.id}">
+        <div class="agency-card-head"><span class="agency-emoji">${s.emoji}</span>
+          <div><h3>${esc(s.title)}</h3><p class="muted">${esc(s.desc)}</p></div></div>
+        <div class="pkg-pills">
+          ${s.packages.map((p, i) => `<button class="pkg-pill${(agencySel[s.id] != null ? agencySel[s.id] : 1) === i ? ' active' : ''}" data-ag-svc="${s.id}" data-ag-pkg="${i}">${esc(p.name)}</button>`).join('')}
+        </div>
+        <ul class="pkg-features" data-ag-features="${s.id}">
+          ${agencyPkg(s).features.map((f) => `<li>✓ ${esc(f)}</li>`).join('')}
+        </ul>
+        <div class="agency-card-foot">
+          <div><div class="agency-price">${fmtPKR(agencyPkg(s).price)}</div>
+          <small class="muted">Delivery in ${agencyPkg(s).days} days</small></div>
+          <button class="btn btn-accent" data-ag-request="${s.id}">Request This Service</button>
+        </div>
+      </article>`).join('')}
+    </div>
+    <div class="panel agency-team">
+      <h2>🏢 Meet the team behind the work</h2>
+      <p>PakFreelance is run by a small in-house team of developers, designers and writers in Pakistan. When you request a Done-For-You service, your work is done by us directly — not subcontracted to strangers. That means one point of contact, clear timelines, and accountability on WhatsApp from the first message to final delivery.</p>
+      <p class="muted">Prefer the marketplace? <a href="#" data-view="freelancers">Browse independent freelancers</a> or <a href="#" data-view="post-job">post your job</a> — the 5% platform fee still applies there and keeps the marketplace running.</p>
+    </div>`;
+
+  w.querySelectorAll('[data-ag-svc]').forEach((b) => b.addEventListener('click', () => {
+    const svcId = b.getAttribute('data-ag-svc');
+    agencySel[svcId] = Number(b.getAttribute('data-ag-pkg'));
+    renderAgency();
+  }));
+  w.querySelectorAll('[data-ag-request]').forEach((b) => b.addEventListener('click', () => openAgencyRequest(b.getAttribute('data-ag-request'))));
+}
+
+function openAgencyRequest(serviceId) {
+  const s = AGENCY_SERVICES.find((x) => x.id === serviceId);
+  if (!s) return;
+  agencyReqSvc = serviceId;
+  $('agServiceName').textContent = `${s.emoji} ${s.title} — delivered by the PakFreelance in-house team`;
+  const sel = $('agPackage');
+  sel.innerHTML = s.packages.map((p, i) => `<option value="${i}"${i === (agencySel[serviceId] != null ? agencySel[serviceId] : 1) ? ' selected' : ''}>${esc(p.name)} — ${fmtPKR(p.price)}</option>`).join('');
+  const syncPkg = () => {
+    const p = s.packages[Number(sel.value)];
+    $('agPrice').textContent = fmtPKR(p.price);
+    $('agDays').textContent = `${p.days} days`;
+  };
+  sel.onchange = syncPkg; syncPkg();
+  $('agNotes').value = ''; $('agName').value = ''; $('agPhone').value = '';
+  $('agFormFields').hidden = false; $('agSuccess').hidden = true;
+  $('agencyBackdrop').hidden = false;
+}
+
+function submitAgencyRequest() {
+  const s = AGENCY_SERVICES.find((x) => x.id === agencyReqSvc);
+  if (!s) return;
+  const pkg = s.packages[Number($('agPackage').value)];
+  const notes = $('agNotes').value.trim();
+  const name = $('agName').value.trim();
+  const phone = $('agPhone').value.trim();
+  if (!notes) { toast('Please describe what you need'); return; }
+  if (!name) { toast('Please enter your name'); return; }
+  if (!phone) { toast('Please enter your WhatsApp number'); return; }
+  const order = {
+    id: uid('a'), jobTitle: `${s.title} — ${pkg.name} package`,
+    freelancerId: 'team', freelancerName: 'PakFreelance Team 🏢',
+    clientName: `${name} (you)`, amount: pkg.price,
+    deadline: new Date(Date.now() + pkg.days * 864e5).toISOString().slice(0, 10),
+    status: 'requested', escrow: false,
+    notes: `Requirements: ${notes}\nContact: ${name} — ${phone}`,
+    created: todayISO(), mineAs: 'client', agency: true, milestones: []
+  };
+  state.orders.unshift(order);
+  saveState();
+  agencyReqOrderId = order.id;
+  const msg = encodeURIComponent(
+    `Assalam-o-Alaikum! I want the *${s.title}* service (${pkg.name} package — Rs ${pkg.price.toLocaleString('en-PK')}).\n\n` +
+    `My requirements: ${notes}\n\nName: ${name}\nMy WhatsApp: ${phone}\n\nRequest ID: ${order.id}`);
+  $('agWaLink').href = `https://wa.me/${TEAM_WHATSAPP}?text=${msg}`;
+  $('agFormFields').hidden = true; $('agSuccess').hidden = false;
+  toast('Request sent — confirm it on WhatsApp');
+}
+
+function bindAgencyModal() {
+  $('agCancel').addEventListener('click', () => { $('agencyBackdrop').hidden = true; });
+  $('agencyBackdrop').addEventListener('click', (e) => { if (e.target === $('agencyBackdrop')) $('agencyBackdrop').hidden = true; });
+  $('agSubmit').addEventListener('click', submitAgencyRequest);
+  $('agTrack').addEventListener('click', () => {
+    $('agencyBackdrop').hidden = true;
+    if (agencyReqOrderId) showView('order', agencyReqOrderId);
+  });
 }
 
 /* ---------------- DISPUTES ---------------- */
@@ -1567,6 +1725,9 @@ function bindGlobal() {
   $('dspCancel').addEventListener('click', () => { $('disputeBackdrop').hidden = true; });
   $('dspSubmit').addEventListener('click', submitDispute);
   $('disputeBackdrop').addEventListener('click', (e) => { if (e.target === $('disputeBackdrop')) $('disputeBackdrop').hidden = true; });
+
+  // Agency (Done For You) modal
+  bindAgencyModal();
 
   // Dashboards
   $('availToggle').addEventListener('click', () => {
