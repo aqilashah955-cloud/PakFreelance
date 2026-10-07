@@ -440,7 +440,7 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--navy-deep); color: #cdd9e2; margin-top: 2rem; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1.5rem; padding: 2.2rem 1rem 1rem !important; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 1.5rem; padding: 2.2rem 1rem 1rem !important; }
 .footer-grid h4 { color: #fff; font-family: var(--font); margin-bottom: 0.6rem; font-size: 0.95rem; }
 .footer-grid a { display: block; color: #aebfcc; text-decoration: none; font-size: 0.9rem; margin-bottom: 0.4rem; }
 .footer-grid a:hover { color: #fff; }
@@ -650,3 +650,6 @@ html[lang="ur"] .msg.them { align-self: flex-end; }
 .agency-team h2 { margin-top: 0; }
 .status-requested { background: #fff4d6; color: #8a6d00; }
 @media (max-width: 640px) { .agency-steps { grid-template-columns: 1fr; } }
+
+/* ============ Agency contact ============ */
+.agency-contact { display: flex; gap: 0.7rem; flex-wrap: wrap; margin: 16px 0; }
