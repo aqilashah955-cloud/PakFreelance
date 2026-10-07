@@ -314,7 +314,8 @@ const SEED_CONVS = [
 ];
 
 /* ---------------- Done-For-You agency services (fulfilled by the PakFreelance in-house team) ---------------- */
-const TEAM_WHATSAPP = '923456121725';
+const TEAM_WHATSAPP = '923456121725'; // +92 345 6121725 — service requests & support
+const TEAM_EMAIL = 'YOUR_EMAIL_HERE'; // <-- TODO: set the team's email address
 const AGENCY_SERVICES = [
   { id: 'web', emoji: '🌐', title: 'Business Website',
     desc: 'A fast, mobile-friendly website for your business — designed, built and launched by our team.',
@@ -357,6 +358,34 @@ const AGENCY_SERVICES = [
       { name: 'Starter', price: 12000, days: 7, features: ['Full SEO audit', '20 keywords researched', 'Fix list for your site'] },
       { name: 'Business', price: 28000, days: 21, features: ['Everything in Starter', '10 pages optimized', 'Google Business profile', 'Backlink starter (10 links)'] },
       { name: 'Premium', price: 50000, days: 30, features: ['Everything in Business', '20 pages optimized', 'Monthly content plan', 'Rank tracking dashboard'] }
+    ] },
+  { id: 'servers', emoji: '🖥️', title: 'Server Setup & Management',
+    desc: 'Your website or app live on a fast, secure server — we set it up, deploy your project and look after it.',
+    packages: [
+      { name: 'Starter', price: 15000, days: 3, features: ['VPS server setup', 'Domain + free SSL certificate', 'Basic security hardening', '1 website deployed'] },
+      { name: 'Business', price: 35000, days: 7, features: ['Cloud VPS on any provider', 'Deployment pipeline', 'Daily automatic backups', 'Uptime monitoring', '1 month free management'] },
+      { name: 'Premium', price: 70000, days: 14, features: ['Multi-server setup', 'Load balancing', 'Advanced firewall protection', 'Performance tuning', '3 months managed support'] }
+    ] },
+  { id: 'apps', emoji: '📱', title: 'Mobile App Development',
+    desc: 'A real Android & iPhone app for your business — designed, built and published on the app stores by our team.',
+    packages: [
+      { name: 'Starter', price: 80000, days: 30, features: ['Android app, up to 5 screens', 'Clean modern design', 'Play Store publishing'] },
+      { name: 'Business', price: 150000, days: 45, features: ['Android + iOS from one codebase', 'Up to 12 screens', 'Push notifications', 'Backend + admin panel'] },
+      { name: 'Premium', price: 300000, days: 75, features: ['Everything in Business', 'Payments integration', 'Maps, chat or booking features', '3 months free support'] }
+    ] },
+  { id: 'software', emoji: '💻', title: 'Custom Software Development',
+    desc: 'Billing systems, dashboards, school or shop management — software built exactly the way your business works.',
+    packages: [
+      { name: 'Starter', price: 60000, days: 21, features: ['Single-purpose business tool', 'Simple database', '1 user role', 'Training video included'] },
+      { name: 'Business', price: 120000, days: 40, features: ['Multi-user system', 'Reports + printable invoices', 'User roles & permissions', 'Data backup setup'] },
+      { name: 'Premium', price: 250000, days: 60, features: ['Full management system (CRM / ERP-lite)', 'Third-party integrations', 'Cloud hosting setup', '3 months free support'] }
+    ] },
+  { id: 'aibot', emoji: '🤖', title: 'AI Chatbot & Automation',
+    desc: 'A smart chatbot that answers your customers on WhatsApp and your website — day and night, even while you sleep.',
+    packages: [
+      { name: 'Starter', price: 20000, days: 7, features: ['WhatsApp chatbot', 'Answers FAQs automatically', 'Handover to a human agent'] },
+      { name: 'Business', price: 45000, days: 14, features: ['AI-powered smart replies', 'Website + WhatsApp', 'Lead capture to Google Sheet', '2 revision rounds'] },
+      { name: 'Premium', price: 90000, days: 21, features: ['Multi-channel bot', 'CRM integration', 'Workflow automation', 'Monthly performance report'] }
     ] }
 ];
 
@@ -1478,7 +1507,11 @@ function renderAgency() {
     </div>
     <div class="panel agency-team">
       <h2>🏢 Meet the team behind the work</h2>
-      <p>PakFreelance is run by a small in-house team of developers, designers and writers in Pakistan. When you request a Done-For-You service, your work is done by us directly — not subcontracted to strangers. That means one point of contact, clear timelines, and accountability on WhatsApp from the first message to final delivery.</p>
+      <p>PakFreelance is run by a small in-house team of developers, designers, writers and server engineers in Pakistan. When you request a Done-For-You service — from a logo to a mobile app or a fully managed server — your work is done by us directly, not subcontracted to strangers. That means one point of contact, clear timelines, and accountability on WhatsApp from the first message to final delivery.</p>
+      <div class="agency-contact">
+        <a class="btn btn-accent" href="https://wa.me/${TEAM_WHATSAPP}" target="_blank" rel="noopener">💬 WhatsApp: 0345 6121725</a>
+        ${TEAM_EMAIL && !TEAM_EMAIL.includes('YOUR_EMAIL') ? `<a class="btn btn-outline" href="mailto:${TEAM_EMAIL}">📧 ${esc(TEAM_EMAIL)}</a>` : ''}
+      </div>
       <p class="muted">Prefer the marketplace? <a href="#" data-view="freelancers">Browse independent freelancers</a> or <a href="#" data-view="post-job">post your job</a> — the 5% platform fee still applies there and keeps the marketplace running.</p>
     </div>`;
 
@@ -1505,6 +1538,7 @@ function openAgencyRequest(serviceId) {
   sel.onchange = syncPkg; syncPkg();
   $('agNotes').value = ''; $('agName').value = ''; $('agPhone').value = '';
   $('agFormFields').hidden = false; $('agSuccess').hidden = true;
+  $('agEmailLink').style.display = (TEAM_EMAIL && !TEAM_EMAIL.includes('YOUR_EMAIL')) ? '' : 'none';
   $('agencyBackdrop').hidden = false;
 }
 
@@ -1534,6 +1568,10 @@ function submitAgencyRequest() {
     `Assalam-o-Alaikum! I want the *${s.title}* service (${pkg.name} package — Rs ${pkg.price.toLocaleString('en-PK')}).\n\n` +
     `My requirements: ${notes}\n\nName: ${name}\nMy WhatsApp: ${phone}\n\nRequest ID: ${order.id}`);
   $('agWaLink').href = `https://wa.me/${TEAM_WHATSAPP}?text=${msg}`;
+  const emailBody = encodeURIComponent(
+    `Assalam-o-Alaikum,\n\nI would like to request the ${s.title} service (${pkg.name} package — Rs ${pkg.price.toLocaleString('en-PK')}).\n\n` +
+    `My requirements:\n${notes}\n\nName: ${name}\nMy WhatsApp: ${phone}\n\nRequest ID: ${order.id}`);
+  $('agEmailLink').href = `mailto:${TEAM_EMAIL}?subject=${encodeURIComponent(`Service request: ${s.title} (${pkg.name}) — ${order.id}`)}&body=${emailBody}`;
   $('agFormFields').hidden = true; $('agSuccess').hidden = false;
   toast('Request sent — confirm it on WhatsApp');
 }
@@ -1758,6 +1796,14 @@ function init() {
   bindGlobal();
   applyI18n();
   updateMsgBadge();
+  // Footer contact email (hidden until a real address is set)
+  const fe = $('footerEmail');
+  if (fe) {
+    if (TEAM_EMAIL && !TEAM_EMAIL.includes('YOUR_EMAIL')) {
+      fe.href = 'mailto:' + TEAM_EMAIL;
+      fe.textContent = '📧 ' + TEAM_EMAIL;
+    } else { fe.style.display = 'none'; }
+  }
   renderHome();
 }
 document.addEventListener('DOMContentLoaded', init);
