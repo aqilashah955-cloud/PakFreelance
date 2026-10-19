@@ -1,5 +1,7 @@
 # PakFreelance
 
+**Live app: https://aqilashah955-cloud.github.io/PakFreelance/**
+
 A demo freelance marketplace connecting Pakistani freelancers with local and international clients. Vanilla HTML/CSS/JS — no build step. Just open `index.html` in a browser (or serve the folder with `python3 -m http.server`).
 
 ## What's inside
