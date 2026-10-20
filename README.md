@@ -2,7 +2,7 @@
 
 **Live app: https://aqilashah955-cloud.github.io/PakFreelance/**
 
-A demo freelance marketplace connecting Pakistani freelancers with local and international clients. Vanilla HTML/CSS/JS — no build step. Just open `index.html` in a browser (or serve the folder with `python3 -m http.server`).
+A freelance marketplace connecting Pakistani freelancers with local and international clients. Vanilla HTML/CSS/JS — no build step. Just open `index.html` in a browser (or serve the folder with `python3 -m http.server`).
 
 ## What's inside
 
@@ -12,19 +12,19 @@ A demo freelance marketplace connecting Pakistani freelancers with local and int
 - **Find Jobs** — filter by category, budget, job type; **AI match score** on every job card with a "Why this matches" breakdown
 - **Post a Job** — with optional 2–4 payment milestones and a transparent 5% fee preview
 - **Freelancer & Client dashboards** — stats, proposals, orders, saved jobs, messages shortcut
-- **Payout methods** — JazzCash, Easypaisa, bank transfer (demo UI, numbers masked, stored locally)
+- **Payout methods** — JazzCash, Easypaisa, bank transfer (numbers masked, stored locally)
 - **Escrow protection** — orders show "Held in escrow"; milestone-based release flow
 - **Skill tests** — 5-question quiz per category (60% to pass) earns a "Skill test passed" badge
 - **Dispute center** — open disputes from any active order; ticket with status timeline
-- **Messages** — conversation list + chat UI with demo simulated replies
+- **Messages** — conversation list + chat UI with simulated replies
 - **Order tracking** — status timeline, milestones, fee breakdown, revision flow
 - **English/اردو toggle** — bilingual header + homepage
 
-## Demo data
+## Sample data
 
-All freelancers, jobs, reviews, conversations, orders and payouts are **fictional sample data** for illustration only (marked as demo in the UI and code comments). Profile photos use `i.pravatar.cc`, portfolio images use seeded `picsum.photos` URLs.
+All freelancers, jobs, reviews, conversations, orders and payouts are **fictional sample data** for illustration only. Profile photos use `i.pravatar.cc`, portfolio images use seeded `picsum.photos` URLs.
 
-User actions (posted jobs, proposals, saved jobs, messages, orders, disputes, payout methods, availability, quiz results, language) persist in `localStorage` under the key `pakfreelance_v1`. Clear site data in your browser to reset the demo.
+User actions (posted jobs, proposals, saved jobs, messages, orders, disputes, payout methods, availability, quiz results, language) persist in `localStorage` under the key `pakfreelance_v1`. Clear site data in your browser to reset the sample.
 
 ## Differentiators (vs typical freelance platforms)
 
