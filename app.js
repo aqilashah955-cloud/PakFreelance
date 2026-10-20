@@ -15,6 +15,9 @@ const esc = (s) => String(s == null ? '' : s)
   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 const uid = (p) => (p || 'id') + '_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 const fmtPKR = (n) => 'Rs ' + Number(n || 0).toLocaleString('en-PK');
+const USD_RATE = 280; // Approximate display rate: 1 USD = Rs 280
+const fmtUSD = (n) => '$' + Math.round(Number(n || 0) / USD_RATE).toLocaleString('en-US');
+const fmtPrice = (n) => (typeof state !== 'undefined' && state && state.currency === 'USD') ? fmtUSD(n) : fmtPKR(n);
 const FEE_RATE = 0.05; // PakFreelance fee: 5% (vs competitors' ~20%)
 const feeOf = (amt) => Math.round(Number(amt || 0) * FEE_RATE);
 const daysAgo = (d) => d <= 0 ? 'Today' : d === 1 ? 'Yesterday' : d + ' days ago';
@@ -315,7 +318,7 @@ const SEED_CONVS = [
 
 /* ---------------- Done-For-You agency services (fulfilled by the PakFreelance in-house team) ---------------- */
 const TEAM_WHATSAPP = '923456121725'; // +92 345 6121725 — service requests & support
-const TEAM_EMAIL = 'YOUR_EMAIL_HERE'; // <-- TODO: set the team's email address
+const TEAM_EMAIL = 'aqilashah955@gmail.com'; // PakFreelance contact & service requests
 const AGENCY_SERVICES = [
   { id: 'web', emoji: '🌐', title: 'Business Website',
     desc: 'A fast, mobile-friendly website for your business — designed, built and launched by our team.',
@@ -514,14 +517,14 @@ const I18N = {
     view_all: 'View all \u2192', sec_jobs: 'Latest jobs', sec_jobs_sub: 'Fresh opportunities from clients',
     browse_jobs: 'Browse all jobs \u2192', sec_how: 'How it works',
     how_client_h: 'For clients',
-    how_client_1: '<strong>Post your job</strong> \u2014 describe what you need, set your budget in PKR.',
+    how_client_1: '<strong>Post your job</strong> \u2014 describe what you need, set your budget in PKR or USD.',
     how_client_2: '<strong>Compare proposals</strong> \u2014 review profiles, ratings and past work.',
     how_client_3: '<strong>Pay securely</strong> \u2014 funds are held in escrow and released only when you approve the work.',
     how_client_btn: 'Post a Job \u2014 it\u2019s free',
     how_free_h: 'For freelancers',
     how_free_1: '<strong>Build your profile</strong> \u2014 showcase skills, portfolio and experience.',
     how_free_2: '<strong>Send proposals</strong> \u2014 apply to jobs that match your expertise.',
-    how_free_3: '<strong>Get paid</strong> \u2014 withdraw earnings via JazzCash, Easypaisa or bank transfer.',
+    how_free_3: '<strong>Get paid</strong> \u2014 clients pay by card, Wise or Payoneer; you withdraw via JazzCash, Easypaisa or bank transfer.',
     how_free_btn: 'Explore Freelancers',
     trust1_h: 'Verified professionals', trust1_s: 'ID & skill-checked profiles',
     trust2_h: 'Secure escrow payments', trust2_s: 'Only 5% fee \u2014 funds released on approval',
@@ -550,7 +553,7 @@ const I18N = {
     how_free_h: '\u0641\u0631\u06CC \u0644\u0627\u0646\u0633\u0631\u0632 \u06A9\u06D2 \u0644\u06CC\u06D2',
     how_free_1: '<strong>\u067E\u0631\u0648\u0641\u0627\u0626\u0644 \u0628\u0646\u0627\u0626\u06CC\u06BA</strong> \u2014 \u0627\u067E\u0646\u06CC \u0645\u06C1\u0627\u0631\u062A\u06CC\u06BA\u060C \u067E\u0648\u0631\u0679 \u0641\u0648\u0644\u06CC\u0648 \u0627\u0648\u0631 \u062A\u062C\u0631\u0628\u06C1 \u062F\u06A9\u06BE\u0627\u0626\u06CC\u06BA\u06D4',
     how_free_2: '<strong>\u067E\u06CC\u0634\u06A9\u0634\u06CC\u06BA \u0628\u06BE\u06CC\u062C\u06CC\u06BA</strong> \u2014 \u0627\u067E\u0646\u06CC \u0645\u06C1\u0627\u0631\u062A \u06A9\u06D2 \u0645\u0637\u0627\u0628\u0642 \u0645\u0644\u0627\u0632\u0645\u062A\u0648\u06BA \u067E\u0631 \u062F\u0631\u062E\u0648\u0627\u0633\u062A \u062F\u06CC\u06BA\u06D4',
-    how_free_3: '<strong>\u0645\u0639\u0627\u0648\u0636\u06C1 \u062D\u0627\u0635\u0644 \u06A9\u0631\u06CC\u06BA</strong> \u2014 \u062C\u0627\u0632 \u06A9\u06CC\u0634\u060C \u0627\u06CC\u0632\u06CC \u067E\u06CC\u0633\u06C1 \u06CC\u0627 \u0628\u06CC\u0646\u06A9 \u0679\u0631\u0627\u0646\u0633\u0641\u0631 \u0633\u06D2 \u0631\u0642\u0645 \u0646\u06A9\u0627\u0644\u06CC\u06BA\u06D4',
+    how_free_3: '<strong>\u0645\u0639\u0627\u0648\u0636\u06c1 \u062d\u0627\u0635\u0644 \u06a9\u0631\u06cc\u06ba</strong> \u2014 \u06a9\u0644\u0627\u0626\u0646\u0679 \u06a9\u0627\u0631\u0688\u060c \u0648\u0627\u0626\u0632 \u06cc\u0627 \u067e\u06d2 \u0627\u0648\u0646\u06cc\u0631 \u0633\u06d2 \u0627\u062f\u0627\u0626\u06cc\u06af\u06cc \u06a9\u0631\u062a\u06d2 \u06c1\u06cc\u06ba\u061b \u0622\u067e \u062c\u0627\u0632 \u06a9\u06cc\u0634\u060c \u0627\u06cc\u0632\u06cc \u067e\u06cc\u0633\u06c1 \u06cc\u0627 \u0628\u06cc\u0646\u06a9 \u0679\u0631\u0627\u0646\u0633\u0641\u0631 \u0633\u06d2 \u0631\u0642\u0645 \u0646\u06a9\u0627\u0644\u06cc\u06ba\u06d4',
     how_free_btn: '\u0641\u0631\u06CC \u0644\u0627\u0646\u0633\u0631\u0632 \u062F\u06CC\u06A9\u06BE\u06CC\u06BA',
     trust1_h: '\u062A\u0635\u062F\u06CC\u0642 \u0634\u062F\u06C1 \u0645\u0627\u06C1\u0631\u06CC\u0646', trust1_s: '\u0634\u0646\u0627\u062E\u062A \u0627\u0648\u0631 \u0645\u06C1\u0627\u0631\u062A \u06A9\u06CC \u062C\u0627\u0646\u0686 \u0634\u062F\u06C1 \u067E\u0631\u0648\u0641\u0627\u0626\u0644\u0632',
     trust2_h: '\u0645\u062D\u0641\u0648\u0638 \u0627\u06CC\u0633\u06A9\u0631\u0648 \u0627\u062F\u0627\u0626\u06CC\u06AF\u06CC\u0627\u06BA', trust2_s: '\u0635\u0631\u0641 5 \u0641\u06CC\u0635\u062F \u0641\u06CC\u0633 \u2014 \u0645\u0646\u0638\u0648\u0631\u06CC \u067E\u0631 \u0631\u0642\u0645 \u062C\u0627\u0631\u06CC',
@@ -585,6 +588,7 @@ const LS_KEY = 'pakfreelance_v1';
 function defaultState() {
   return {
     lang: 'en',
+    currency: 'PKR',   // display currency: 'PKR' or 'USD' (USD uses an approximate rate)
     myJobs: [],            // user-posted jobs
     myProposals: [],       // proposals sent by sample freelancer
     proposalCounts: {},    // extra proposal counts per job id
@@ -624,6 +628,7 @@ const maskNumber = (num) => {
 /* ---------------- Router ---------------- */
 const VIEWS = ['home', 'freelancers', 'profile', 'jobs', 'post-job', 'dash-f', 'dash-c', 'messages', 'order', 'quiz', 'dispute', 'agency'];
 let currentProfileId = null, currentOrderId = null, currentDisputeId = null;
+let currentView = 'home', currentViewParam = null;
 
 const VIEW_TITLES = {
   home: "PakFreelance — Hire Freelancers in Pakistan | Web, Design, Writing, Marketing",
@@ -642,6 +647,7 @@ const VIEW_TITLES = {
 
 function showView(name, param) {
   if (!VIEWS.includes(name)) name = 'home';
+  currentView = name; currentViewParam = param;
   document.title = VIEW_TITLES[name] || VIEW_TITLES.home;
   $$('.view').forEach((v) => v.classList.remove('active'));
   const el = $('view-' + name);
@@ -699,13 +705,28 @@ function bindNav() {
     applyI18n();
     toast(state.lang === 'ur' ? '\u0627\u0631\u062F\u0648 \u0645\u0646\u062A\u062E\u0628 \u06A9\u06CC \u06AF\u0626\u06CC' : 'English selected');
   });
+  const fxBtn = $('fxToggle');
+  if (fxBtn) {
+    const applyCurrency = () => {
+      fxBtn.textContent = state.currency === 'USD' ? 'USD ▾' : 'PKR ▾';
+      fxBtn.title = state.currency === 'USD'
+        ? 'Showing USD prices (approximate rate: 1 USD = Rs 280). Click to switch to PKR.'
+        : 'Showing PKR prices. Click to switch to USD (approximate rate: 1 USD = Rs 280).';
+    };
+    applyCurrency();
+    fxBtn.addEventListener('click', () => {
+      state.currency = state.currency === 'USD' ? 'PKR' : 'USD';
+      saveState(); applyCurrency(); showView(currentView, currentViewParam);
+      toast(state.currency === 'USD' ? 'Prices shown in USD \u2014 approximate rate: 1 USD = Rs 280' : 'Prices shown in PKR');
+    });
+  }
 }
 
 /* ---------------- Shared card builders ---------------- */
 function availLabel(a) { return a === 'available' ? 'Available' : a === 'limited' ? 'Limited availability' : 'Busy'; }
 
 function freelancerCard(f) {
-  const price = f.rateType === 'hr' ? `${fmtPKR(f.rate)}<small>/hr</small>` : `From ${fmtPKR(f.startingPrice)}`;
+  const price = f.rateType === 'hr' ? `${fmtPrice(f.rate)}<small>/hr</small>` : `From ${fmtPrice(f.startingPrice)}`;
   return `
   <article class="f-card" data-profile="${f.id}" tabindex="0" role="link" aria-label="View profile of ${esc(f.name)}">
     <div class="f-card-top">
@@ -770,7 +791,7 @@ function jobCard(job) {
       ${matchBadge(job)}
     </div>
     <div class="job-meta">
-      <span class="budget">${fmtPKR(job.budget)}${job.budgetType === 'hourly' ? '/hr' : ''}</span>
+      <span class="budget">${fmtPrice(job.budget)}${job.budgetType === 'hourly' ? '/hr' : ''}</span>
       <span>📍 ${job.type === 'remote' ? 'Remote' : 'Onsite · ' + esc(job.client.city)}</span>
       <span>🕒 ${daysAgo(job.postedDaysAgo)}</span>
       <span>📩 ${count} proposals</span>
@@ -803,7 +824,7 @@ function renderHome() {
         <img class="avatar" src="${f.photo}" alt="" loading="lazy" />
         <div><div class="f-name">${esc(s.name)}</div><div class="f-title">${esc(f.cat)} · ${esc(f.name)}</div></div>
       </div>
-      <div class="f-card-foot"><span class="price">From ${fmtPKR(s.price)}</span><span class="rating">★ ${f.rating.toFixed(1)}</span></div>
+      <div class="f-card-foot"><span class="price">From ${fmtPrice(s.price)}</span><span class="rating">★ ${f.rating.toFixed(1)}</span></div>
     </article>`).join('');
   // Top skills chips
   const skills = [...new Set(FREELANCERS.flatMap((f) => f.skills))].slice(0, 14);
@@ -878,7 +899,7 @@ function renderProfile(id) {
   const f = freelancerById(id);
   if (!f) { $('profileWrap').innerHTML = '<p class="empty">Freelancer not found.</p>'; return; }
   if (id === 'f1') { state.profileViews++; saveState(); }
-  const price = f.rateType === 'hr' ? `${fmtPKR(f.rate)}<small>/hour</small>` : `Starting at ${fmtPKR(f.startingPrice)}`;
+  const price = f.rateType === 'hr' ? `${fmtPrice(f.rate)}<small>/hour</small>` : `Starting at ${fmtPrice(f.startingPrice)}`;
   $('profileWrap').innerHTML = `
     <div class="profile-hero">
       <div class="profile-id">
@@ -918,7 +939,7 @@ function renderProfile(id) {
       ${f.services.map((s, i) => `
         <div class="service-row">
           <div><strong>${esc(s.name)}</strong><br /><span class="muted" style="font-size:0.9rem;">${esc(s.desc)}</span></div>
-          <div style="text-align:right;"><div class="price">${fmtPKR(s.price)}</div>
+          <div style="text-align:right;"><div class="price">${fmtPrice(s.price)}</div>
           <button class="btn btn-primary btn-sm" data-hire-svc="${i}">Hire</button></div>
         </div>`).join('')}
       <p class="hint">PakFreelance fee is only 5% — funds are held in escrow until you approve the work.</p>
@@ -984,7 +1005,7 @@ function initPostJob() {
   updatePjFee();
 }
 function addMilestoneRow() {
-  if (pjMsCount >= 4) { toast('Maximum 4 milestones'); return; }
+  if (pjMsCount >= 4) { toast('You can add up to 4 milestones'); return; }
   pjMsCount++;
   const div = document.createElement('div');
   div.className = 'ms-row';
@@ -997,9 +1018,9 @@ function addMilestoneRow() {
 }
 function updatePjFee() {
   const b = parseFloat($('pjBudget').value || '0');
-  $('pjFeeBase').textContent = b ? fmtPKR(b) : '–';
-  $('pjFeeAmt').textContent = b ? fmtPKR(feeOf(b)) : '–';
-  $('pjFeeNet').textContent = b ? fmtPKR(b - feeOf(b)) : '–';
+  $('pjFeeBase').textContent = b ? fmtPrice(b) : '–';
+  $('pjFeeAmt').textContent = b ? fmtPrice(feeOf(b)) : '–';
+  $('pjFeeNet').textContent = b ? fmtPrice(b - feeOf(b)) : '–';
 }
 function submitPostJob(e) {
   e.preventDefault();
@@ -1026,7 +1047,7 @@ function submitPostJob(e) {
   $('pjForm').reset();
   $('pjMilestones').innerHTML = ''; pjMsCount = 0;
   initPostJob();
-  toast('Job posted successfully!');
+  toast('Job posted successfully — freelancers can now send proposals');
   showView('dash-c');
 }
 
@@ -1037,7 +1058,7 @@ function openProposalModal(jobId) {
   if (!job) return;
   proposalJobId = jobId;
   $('propJobTitle').textContent = 'Submit proposal';
-  $('propJobMeta').textContent = `${job.title} · ${fmtPKR(job.budget)}${job.budgetType === 'hourly' ? '/hr' : ''} · ${job.client.name}`;
+  $('propJobMeta').textContent = `${job.title} · ${fmtPrice(job.budget)}${job.budgetType === 'hourly' ? '/hr' : ''} · ${job.client.name}`;
   $('propCover').value = ''; $('propBid').value = ''; $('propDays').value = '';
   $('modalBackdrop').hidden = false;
 }
@@ -1045,7 +1066,7 @@ function submitProposal() {
   const cover = $('propCover').value.trim();
   const bid = parseFloat($('propBid').value);
   const days = parseInt($('propDays').value, 10);
-  if (!cover || !(bid > 0) || !(days > 0)) { toast('Please fill cover letter, bid and delivery time'); return; }
+  if (!cover || !(bid > 0) || !(days > 0)) { toast('Please add a cover letter, your bid, and the delivery time'); return; }
   const job = jobById(proposalJobId);
   state.myProposals.unshift({ id: uid('p'), jobId: proposalJobId, jobTitle: job.title, cover, bid, days, status: 'pending', date: todayISO() });
   state.proposalCounts[proposalJobId] = (state.proposalCounts[proposalJobId] || 0) + 1;
@@ -1090,7 +1111,7 @@ function openHireModal(fid, svcIdx) {
   hireSvcIdx = svcIdx || 0;
   $('hireFreelancerName').textContent = `${f.name} · ${f.title} · ${f.city}`;
   const sel = $('hireService');
-  sel.innerHTML = f.services.map((s, i) => `<option value="${i}">${esc(s.name)} — ${fmtPKR(s.price)}</option>`).join('');
+  sel.innerHTML = f.services.map((s, i) => `<option value="${i}">${esc(s.name)} — ${fmtPrice(s.price)}</option>`).join('');
   sel.value = String(hireSvcIdx);
   $('hireAmount').value = f.services[hireSvcIdx].price;
   $('hireDeadline').value = '';
@@ -1100,15 +1121,15 @@ function openHireModal(fid, svcIdx) {
 }
 function updateHireFee() {
   const amt = parseFloat($('hireAmount').value || '0');
-  $('hireSubtotal').textContent = fmtPKR(amt);
-  $('hireFee').textContent = fmtPKR(feeOf(amt));
-  $('hireTotal').textContent = fmtPKR(amt + feeOf(amt));
+  $('hireSubtotal').textContent = fmtPrice(amt);
+  $('hireFee').textContent = fmtPrice(feeOf(amt));
+  $('hireTotal').textContent = fmtPrice(amt + feeOf(amt));
 }
 function submitHire() {
   const f = freelancerById(hireFreelancerId);
   const amt = parseFloat($('hireAmount').value);
   const deadline = $('hireDeadline').value;
-  if (!(amt > 0) || !deadline) { toast('Enter amount and deadline'); return; }
+  if (!(amt > 0) || !deadline) { toast('Please enter an amount and a deadline'); return; }
   const svc = f.services[parseInt($('hireService').value, 10)];
   const order = {
     id: 'o' + (++state.orderSeq), jobTitle: svc.name, freelancerId: f.id, freelancerName: f.name,
@@ -1119,7 +1140,7 @@ function submitHire() {
   state.orders.unshift(order);
   saveState();
   $('hireBackdrop').hidden = true;
-  toast(`Order placed — ${fmtPKR(amt + feeOf(amt))} held in escrow`);
+  toast(`Order placed — ${fmtPrice(amt + feeOf(amt))} held in escrow`);
   showView('order', order.id);
 }
 
@@ -1130,7 +1151,7 @@ function orderMini(o, view) {
   return `
   <div class="mini-row" data-order="${o.id}" style="cursor:pointer;">
     <div class="grow"><strong>${esc(o.jobTitle)}</strong><br />
-      <span class="muted" style="font-size:0.85rem;">${esc(view === 'f' ? o.clientName : o.freelancerName)} · ${fmtPKR(o.amount)} · due ${fmtDate(o.deadline)}</span></div>
+      <span class="muted" style="font-size:0.85rem;">${esc(view === 'f' ? o.clientName : o.freelancerName)} · ${fmtPrice(o.amount)} · due ${fmtDate(o.deadline)}</span></div>
     <span class="status-pill status-${o.status}">${o.status.replace('_', ' ')}</span>
   </div>`;
 }
@@ -1142,7 +1163,7 @@ function renderDashF() {
   const active = myOrders.filter((o) => ['placed', 'in_progress', 'delivered'].includes(o.status));
   const earnings = myOrders.filter((o) => o.status === 'completed').reduce((s, o) => s + o.amount, 0)
     + myOrders.flatMap((o) => o.milestones || []).filter((m) => m.status === 'released').reduce((s, m) => s + m.amount, 0);
-  $('dfEarnings').textContent = fmtPKR(earnings);
+  $('dfEarnings').textContent = fmtPrice(earnings);
   $('dfOrders').textContent = active.length;
   $('dfProposals').textContent = state.myProposals.length;
   $('dfViews').textContent = (me.views + state.profileViews).toLocaleString('en-PK');
@@ -1174,7 +1195,7 @@ function renderDashF() {
   // Proposals sent
   $('dfProposalsList').innerHTML = state.myProposals.length ? state.myProposals.map((p) => `
     <div class="mini-row"><div class="grow"><strong>${esc(p.jobTitle)}</strong><br />
-      <span class="muted" style="font-size:0.85rem;">Bid ${fmtPKR(p.bid)} · ${p.days} days · ${esc(p.date)}</span></div>
+      <span class="muted" style="font-size:0.85rem;">Bid ${fmtPrice(p.bid)} · ${p.days} days · ${esc(p.date)}</span></div>
       <span class="status-pill status-${p.status}">${p.status}</span></div>`).join('')
     : '<p class="empty">You have not sent any proposals yet. <button class="link-btn" data-view="jobs">Browse jobs</button></p>';
 
@@ -1185,7 +1206,7 @@ function renderDashF() {
   const saved = allJobs().filter((j) => state.savedJobs.includes(j.id));
   $('dfSavedList').innerHTML = saved.length ? saved.map((j) => `
     <div class="mini-row"><div class="grow"><strong>${esc(j.title)}</strong><br />
-      <span class="muted" style="font-size:0.85rem;">${fmtPKR(j.budget)} · ${esc(j.cat)}</span></div>
+      <span class="muted" style="font-size:0.85rem;">${fmtPrice(j.budget)} · ${esc(j.cat)}</span></div>
       <button class="btn btn-accent btn-sm" data-propose="${j.id}">Propose</button></div>`).join('')
     : '<p class="empty">No saved jobs yet.</p>';
   $('dfSavedList').querySelectorAll('[data-propose]').forEach((b) => b.addEventListener('click', () => openProposalModal(b.getAttribute('data-propose'))));
@@ -1213,13 +1234,13 @@ function renderDashC() {
   $('dcJobs').textContent = myJobs.length;
   $('dcProposals').textContent = received.length;
   $('dcOrders').textContent = active.length;
-  $('dcSpent').textContent = fmtPKR(myOrders.reduce((s, o) => s + o.amount + feeOf(o.amount), 0));
+  $('dcSpent').textContent = fmtPrice(myOrders.reduce((s, o) => s + o.amount + feeOf(o.amount), 0));
 
   $('dcJobsList').innerHTML = myJobs.length ? myJobs.map((j) => {
     const count = j.proposalsCount + (state.proposalCounts[j.id] || 0);
     return `
     <div class="mini-row"><div class="grow"><strong>${esc(j.title)}</strong><br />
-      <span class="muted" style="font-size:0.85rem;">${esc(j.cat)} · ${fmtPKR(j.budget)} · ${count} proposals</span></div>
+      <span class="muted" style="font-size:0.85rem;">${esc(j.cat)} · ${fmtPrice(j.budget)} · ${count} proposals</span></div>
       <span class="status-pill status-active">${count} proposals</span></div>`;
   }).join('') : '<p class="empty">No jobs posted yet.</p>';
 
@@ -1242,7 +1263,7 @@ function renderDashC() {
       </div>
       <p style="font-size:0.93rem;margin:0.6rem 0;"><strong>For:</strong> ${esc(jobById(p.jobId).title)}</p>
       <p style="font-size:0.93rem;">${esc(p.cover)}</p>
-      <div class="job-meta"><span class="budget">Bid: ${fmtPKR(p.bid)}</span><span>Delivery: ${p.days} days</span><span>${esc(p.date)}</span></div>
+      <div class="job-meta"><span class="budget">Bid: ${fmtPrice(p.bid)}</span><span>Delivery: ${p.days} days</span><span>${esc(p.date)}</span></div>
       ${p.status === 'pending' ? `
       <div class="job-card-foot">
         <button class="btn btn-accent btn-sm" data-accept="${p.id}">Accept &amp; create order</button>
@@ -1259,8 +1280,8 @@ function renderDashC() {
 
 /* ---------------- Payout methods ---------------- */
 function payoutItem(p) {
-  const cls = p.type === 'JazzCash' ? 'jazzcash' : p.type === 'Easypaisa' ? 'easypaisa' : 'bank';
-  const initial = p.type === 'Bank transfer' ? '🏦' : p.type.charAt(0);
+  const cls = p.type === 'JazzCash' ? 'jazzcash' : p.type === 'Easypaisa' ? 'easypaisa' : p.type === 'Card' ? 'card' : p.type === 'Wise' ? 'wise' : p.type === 'Payoneer' ? 'payoneer' : 'bank';
+  const initial = p.type === 'Bank transfer' ? '🏦' : p.type === 'Card' ? '💳' : p.type.charAt(0);
   return `
   <div class="payout-item">
     <span class="payout-icon ${cls}">${initial}</span>
@@ -1281,7 +1302,7 @@ let payoutTarget = 'df';
 function openPayoutModal() { $('poType').value = 'JazzCash'; $('poName').value = ''; $('poNumber').value = ''; $('payoutBackdrop').hidden = false; }
 function submitPayout() {
   const name = $('poName').value.trim(), number = $('poNumber').value.trim();
-  if (!name || !number) { toast('Enter account title and number'); return; }
+  if (!name || !number) { toast('Please enter the account title and number'); return; }
   state.payouts.push({ id: uid('pm'), type: $('poType').value, name, number });
   saveState();
   $('payoutBackdrop').hidden = true;
@@ -1385,12 +1406,12 @@ function renderOrder(id) {
     if (m.status === 'pending' && !isClient && ['placed', 'in_progress'].includes(o.status))
       actions = `<button class="btn btn-primary btn-sm" data-ms-deliver="${m.id}">Mark delivered</button>`;
     if (m.status === 'delivered' && isClient)
-      actions = `<button class="btn btn-accent btn-sm" data-ms-release="${m.id}">Release ${fmtPKR(m.amount)}</button>
+      actions = `<button class="btn btn-accent btn-sm" data-ms-release="${m.id}">Release ${fmtPrice(m.amount)}</button>
                  <button class="btn btn-outline btn-sm" data-ms-revision="${m.id}">Request revision</button>`;
     return `
     <div class="milestone">
       <div class="milestone-top"><strong>${esc(m.title)}</strong>
-        <span>${fmtPKR(m.amount)} ${milestoneStatusPill(m.status)}</span></div>
+        <span>${fmtPrice(m.amount)} ${milestoneStatusPill(m.status)}</span></div>
       ${actions ? `<div class="milestone-actions">${actions}</div>` : ''}
     </div>`;
   }).join('');
@@ -1414,9 +1435,9 @@ function renderOrder(id) {
       ${o.escrow ? '<p><span class="escrow-badge">🔒 Held in escrow</span></p>' : ''}
       ${f && !isClient ? '' : ''}
       <div class="order-meta">
-        <div class="fact"><span>Amount</span><strong>${fmtPKR(o.amount)}</strong></div>
-        <div class="fact"><span>PakFreelance fee (5%)</span><strong>${fmtPKR(fee)}</strong></div>
-        <div class="fact"><span>Total</span><strong>${fmtPKR(total)}</strong></div>
+        <div class="fact"><span>Amount</span><strong>${fmtPrice(o.amount)}</strong></div>
+        <div class="fact"><span>PakFreelance fee (5%)</span><strong>${fmtPrice(fee)}</strong></div>
+        <div class="fact"><span>Total</span><strong>${fmtPrice(total)}</strong></div>
         <div class="fact"><span>Deadline</span><strong>${fmtDate(o.deadline)}</strong></div>
       </div>
       ${o.notes ? `<p><strong>Notes:</strong> ${esc(o.notes)}</p>` : ''}
@@ -1444,11 +1465,11 @@ function renderOrder(id) {
 
   const b = (id) => $(id);
   if (b('ordStart')) b('ordStart').addEventListener('click', () => mutate((t) => { t.status = 'in_progress'; toast('Work started'); }));
-  if (b('ordDeliver')) b('ordDeliver').addEventListener('click', () => mutate((t) => { t.status = 'delivered'; toast('Marked as delivered — client can now approve'); }));
+  if (b('ordDeliver')) b('ordDeliver').addEventListener('click', () => mutate((t) => { t.status = 'delivered'; toast('Marked as delivered — the client can now approve it'); }));
   if (b('ordComplete')) b('ordComplete').addEventListener('click', () => mutate((t) => {
     t.status = 'completed';
     (t.milestones || []).forEach((m) => { if (m.status !== 'released') m.status = 'released'; });
-    toast('Order completed — funds released');
+    toast('Order completed — escrow funds released');
   }));
   if (b('ordRevision')) b('ordRevision').addEventListener('click', () => mutate((t) => { t.status = 'in_progress'; toast('Revision requested'); }));
   if (b('ordDispute')) b('ordDispute').addEventListener('click', () => openDisputeModal(o.id));
@@ -1459,7 +1480,7 @@ function renderOrder(id) {
   })));
   $$('#orderWrap [data-ms-release]').forEach((btn) => btn.addEventListener('click', () => mutate((t) => {
     const m = t.milestones.find((x) => x.id === btn.getAttribute('data-ms-release'));
-    if (m) { m.status = 'released'; toast(`${fmtPKR(m.amount)} released to freelancer`); }
+    if (m) { m.status = 'released'; toast(`${fmtPrice(m.amount)} released to freelancer`); }
     if (t.milestones.every((x) => x.status === 'released')) t.status = 'completed';
   })));
   $$('#orderWrap [data-ms-revision]').forEach((btn) => btn.addEventListener('click', () => mutate((t) => {
@@ -1480,11 +1501,11 @@ function renderAgency() {
     <div class="agency-hero">
       <p class="hero-kicker">PakFreelance in-house team</p>
       <h1>🚀 Done For You</h1>
-      <p class="agency-sub">Don't want to search, compare and manage freelancers? Hand the work directly to our own team — fixed PKR prices, guaranteed delivery dates, and direct WhatsApp support from start to finish.</p>
+      <p class="agency-sub">Don't want to search, compare and manage freelancers? Hand the work directly to our own team — transparent fixed prices in PKR (USD shown at an approximate rate), guaranteed delivery dates, and direct WhatsApp support from start to finish.</p>
       <div class="agency-steps">
         <div><span class="step-n">1</span><div><strong>Pick a service</strong><br /><small>Choose a package that fits your budget</small></div></div>
         <div><span class="step-n">2</span><div><strong>Send your requirements</strong><br /><small>We confirm everything on WhatsApp</small></div></div>
-        <div><span class="step-n">3</span><div><strong>Get it delivered</strong><br /><small>Pay via JazzCash, Easypaisa or bank</small></div></div>
+        <div><span class="step-n">3</span><div><strong>Get it delivered</strong><br /><small>Pay your way — card, Wise, Payoneer, JazzCash, Easypaisa or bank</small></div></div>
       </div>
     </div>
     <div class="agency-grid">
@@ -1499,7 +1520,7 @@ function renderAgency() {
           ${agencyPkg(s).features.map((f) => `<li>✓ ${esc(f)}</li>`).join('')}
         </ul>
         <div class="agency-card-foot">
-          <div><div class="agency-price">${fmtPKR(agencyPkg(s).price)}</div>
+          <div><div class="agency-price">${fmtPrice(agencyPkg(s).price)}</div>
           <small class="muted">Delivery in ${agencyPkg(s).days} days</small></div>
           <button class="btn btn-accent" data-ag-request="${s.id}">Request This Service</button>
         </div>
@@ -1529,10 +1550,10 @@ function openAgencyRequest(serviceId) {
   agencyReqSvc = serviceId;
   $('agServiceName').textContent = `${s.emoji} ${s.title} — delivered by the PakFreelance in-house team`;
   const sel = $('agPackage');
-  sel.innerHTML = s.packages.map((p, i) => `<option value="${i}"${i === (agencySel[serviceId] != null ? agencySel[serviceId] : 1) ? ' selected' : ''}>${esc(p.name)} — ${fmtPKR(p.price)}</option>`).join('');
+  sel.innerHTML = s.packages.map((p, i) => `<option value="${i}"${i === (agencySel[serviceId] != null ? agencySel[serviceId] : 1) ? ' selected' : ''}>${esc(p.name)} — ${fmtPrice(p.price)}</option>`).join('');
   const syncPkg = () => {
     const p = s.packages[Number(sel.value)];
-    $('agPrice').textContent = fmtPKR(p.price);
+    $('agPrice').textContent = fmtPrice(p.price);
     $('agDays').textContent = `${p.days} days`;
   };
   sel.onchange = syncPkg; syncPkg();
@@ -1573,7 +1594,7 @@ function submitAgencyRequest() {
     `My requirements:\n${notes}\n\nName: ${name}\nMy WhatsApp: ${phone}\n\nRequest ID: ${order.id}`);
   $('agEmailLink').href = `mailto:${TEAM_EMAIL}?subject=${encodeURIComponent(`Service request: ${s.title} (${pkg.name}) — ${order.id}`)}&body=${emailBody}`;
   $('agFormFields').hidden = true; $('agSuccess').hidden = false;
-  toast('Request sent — confirm it on WhatsApp');
+  toast('Request sent — please confirm it on WhatsApp');
 }
 
 function bindAgencyModal() {
@@ -1592,7 +1613,7 @@ function openDisputeModal(orderId) {
   const o = orderById(orderId);
   if (!o) return;
   disputeOrderId = orderId;
-  $('dspOrderTitle').textContent = `Order ${o.id} · ${o.jobTitle} · ${fmtPKR(o.amount)}`;
+  $('dspOrderTitle').textContent = `Order ${o.id} · ${o.jobTitle} · ${fmtPrice(o.amount)}`;
   $('dspDetails').value = '';
   $('disputeBackdrop').hidden = false;
 }
