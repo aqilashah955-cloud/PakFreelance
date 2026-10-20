@@ -1,5 +1,5 @@
 /* =====================================================================
-   PakFreelance — demo freelance marketplace (vanilla JS, no build step)
+   PakFreelance — freelance marketplace (vanilla JS, no build step)
    ALL data below is fictional SAMPLE/DEMO data for illustration only.
    User actions (jobs, proposals, messages, orders, disputes, payouts)
    persist in localStorage under 'pakfreelance_v1'.
@@ -33,10 +33,10 @@ function toast(msg) {
 /* ---------------- Static reference data ---------------- */
 const CATEGORIES = ['Web Development', 'Graphic Design', 'Video Editing', 'Content Writing', 'SEO', 'Digital Marketing', 'AI Services', 'UI/UX Design', 'Virtual Assistance', 'Translation'];
 const CITIES = ['Karachi', 'Lahore', 'Islamabad', 'Rawalpindi', 'Faisalabad', 'Multan', 'Peshawar', 'Quetta', 'Hyderabad', 'Sialkot'];
-// Demo portfolio image helper (picsum seeded — reliable placeholder imagery)
+// Sample portfolio image helper (picsum seeded — reliable placeholder imagery)
 const pf = (id, n) => Array.from({ length: n }, (_, i) => `https://picsum.photos/seed/pf-${id}-${i + 1}/600/400`);
 
-/* ---------------- Demo freelancers (12) ---------------- */
+/* ---------------- Sample freelancers (12) ---------------- */
 const FREELANCERS = [
   { id: 'f1', name: 'Ahmed Raza', title: 'Full-Stack Web Developer', city: 'Karachi', cat: 'Web Development',
     skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js'],
@@ -239,7 +239,7 @@ const FREELANCERS = [
 ];
 const freelancerById = (id) => FREELANCERS.find((f) => f.id === id);
 
-/* ---------------- Demo jobs (8) ---------------- */
+/* ---------------- Sample jobs (8) ---------------- */
 const JOBS = [
   { id: 'j1', title: 'Build a responsive e-commerce website', cat: 'Web Development',
     desc: 'We need a full e-commerce website for our clothing brand: product catalog, cart, checkout, and an admin panel. Prefer React + Node.js or WordPress/WooCommerce. Design references will be provided.',
@@ -286,7 +286,7 @@ const JOBS = [
 const jobById = (id) => JOBS.find((j) => j.id === id) || state.myJobs.find((j) => j.id === id);
 const allJobs = () => [...state.myJobs, ...JOBS];
 
-/* ---------------- Seed proposals (demo) ---------------- */
+/* ---------------- Seed proposals (sample) ---------------- */
 const SEED_PROPOSALS = [
   { id: 'sp1', jobId: 'j1', freelancerId: 'f11', cover: 'I have built 12 WooCommerce stores for clothing brands. I can deliver your e-commerce site with product catalog, cart, checkout and admin panel in 3 weeks, with training videos for your team.', bid: 78000, days: 21, status: 'pending', date: '2026-09-29' },
   { id: 'sp2', jobId: 'j1', freelancerId: 'f8', cover: 'As a UI/UX designer who also builds frontends, I will make your store beautiful AND fast. Includes a full Figma prototype before development starts.', bid: 90000, days: 28, status: 'pending', date: '2026-09-30' },
@@ -294,7 +294,7 @@ const SEED_PROPOSALS = [
   { id: 'sp4', jobId: 'j4', freelancerId: 'f6', cover: 'I combine SEO with content strategy so rankings actually turn into sales. Includes competitor gap analysis and a 3-month editorial calendar.', bid: 32000, days: 12, status: 'pending', date: '2026-09-29' }
 ];
 
-/* ---------------- Seed conversations (demo) ---------------- */
+/* ---------------- Seed conversations (sample) ---------------- */
 const SEED_CONVS = [
   { id: 'c1', withId: 'f2', withName: 'Fatima Khan', withPhoto: 'https://i.pravatar.cc/150?img=47', role: 'freelancer',
     messages: [
@@ -389,7 +389,7 @@ const AGENCY_SERVICES = [
     ] }
 ];
 
-/* ---------------- Seed orders (demo) ---------------- */
+/* ---------------- Seed orders (sample) ---------------- */
 const SEED_ORDERS = [
   { id: 'o1', jobTitle: 'Company website for Al-Noor Traders', freelancerId: 'f1', freelancerName: 'Ahmed Raza',
     clientName: 'David O\u2019Brien (UK)', amount: 45000, deadline: '2026-10-20', status: 'in_progress',
@@ -412,7 +412,7 @@ const SEED_ORDERS = [
     ] }
 ];
 
-/* ---------------- Seed disputes (demo) ---------------- */
+/* ---------------- Seed disputes (sample) ---------------- */
 const SEED_DISPUTES = [
   { id: 'd1', orderId: 'o2', orderTitle: 'Landing page for TechStart',
     reason: 'Revision turnaround', details: 'Client requested extra revisions beyond scope; resolved with one additional paid revision round.',
@@ -424,7 +424,7 @@ const SEED_DISPUTES = [
     ] }
 ];
 
-/* ---------------- Skill-test quiz bank (demo — 5 questions per category) ---------------- */
+/* ---------------- Skill-test quiz bank (sample — 5 questions per category) ---------------- */
 const QUIZ = {
   'Web Development': [
     { q: 'Which HTML tag is used for the largest heading?', o: ['<h1>', '<h6>', '<head>', '<header>'], a: 0 },
@@ -586,7 +586,7 @@ function defaultState() {
   return {
     lang: 'en',
     myJobs: [],            // user-posted jobs
-    myProposals: [],       // proposals sent by demo freelancer
+    myProposals: [],       // proposals sent by sample freelancer
     proposalCounts: {},    // extra proposal counts per job id
     savedJobs: ['j5'],     // demo: one saved job
     orders: [],            // user-created orders (merged with SEED_ORDERS)
@@ -596,7 +596,7 @@ function defaultState() {
     activeConv: null,
     availability: true,
     skillTests: {},        // { category: score }
-    payouts: [            // demo payout method (masked)
+    payouts: [            // sample payout method (masked)
       { id: 'pm0', type: 'Easypaisa', name: 'Ahmed Raza', number: '0345128899', demo: true }
     ],
     profileViews: 0
@@ -1349,7 +1349,7 @@ function sendChat(e) {
   c.messages.push({ from: 'me', text, time: 'Just now' });
   $('chatInput').value = '';
   saveState(); renderChat(); renderMessages();
-  // Demo simulated reply
+  // Sample simulated reply
   const convId = c.id;
   setTimeout(() => {
     const conv = state.convs.find((x) => x.id === convId);
